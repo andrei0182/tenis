@@ -4,3 +4,8 @@ __pycache__/
 .venv/
 venv/
 *.egg-info/
+
+# Model package: raw data and outputs are never committed
+data/
+outputs/
+.pytest_cache/
