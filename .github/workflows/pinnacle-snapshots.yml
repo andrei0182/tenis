@@ -1,0 +1,66 @@
+name: Pinnacle tennis snapshots (closing lines for value bets)
+
+# Every 2 hours: one pinnapi.com request for all prematch tennis odds (free tier: 100/day).
+# The last snapshot before each match starts is its closing line, used to measure the value
+# bets' CLV. State lives on the `value-data` branch, not on main. GitHub cron can run late,
+# so closing lines are approximate.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "45 */2 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: value-data
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    env:
+      PINNAPI_KEY: ${{ secrets.PINNAPI_KEY }}
+    steps:
+      - name: Skip if the PINNAPI_KEY secret is not set
+        if: env.PINNAPI_KEY == ''
+        run: echo "::notice::PINNAPI_KEY secret missing -- add it in Settings > Secrets and variables > Actions."
+
+      - uses: actions/checkout@v4
+        if: env.PINNAPI_KEY != ''
+
+      - name: Checkout state branch (value-data)
+        if: env.PINNAPI_KEY != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin value-data >/dev/null; then
+            git clone --depth 1 --branch value-data "$url" state
+          else
+            mkdir state && cd state && git init -q -b value-data && git remote add origin "$url"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: env.PINNAPI_KEY != ''
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        if: env.PINNAPI_KEY != ''
+        run: pip install -e .
+
+      - name: Snapshot Pinnacle tennis odds
+        if: env.PINNAPI_KEY != ''
+        run: python -c "from tenis.pinnacle import snapshot; df = snapshot('state/sharp.csv', 'state/pinnacle_snapshots.csv'); print(len(df), 'meciuri')"
+
+      - name: Commit state
+        if: env.PINNAPI_KEY != ''
+        working-directory: state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "No changes." || git commit -q -m "Pinnacle snapshot $(date -u +%FT%H:%MZ)"
+          git push -q origin value-data
