@@ -9,3 +9,6 @@ venv/
 data/
 outputs/
 .pytest_cache/
+
+# value-bets state lives on the value-data branch
+state/

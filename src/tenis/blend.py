@@ -29,6 +29,8 @@ def _power_row(q: np.ndarray) -> np.ndarray:
 def devig_power(odds: np.ndarray) -> np.ndarray:
     """p_i = q_i^k with k chosen so the row sums to 1 (power method)."""
     q = 1.0 / np.atleast_2d(np.asarray(odds, dtype=float))
+    if len(q) == 0:
+        return q.reshape(np.shape(odds))
     out = np.vstack([_power_row(row) for row in q])
     return out.reshape(np.shape(odds))
 
