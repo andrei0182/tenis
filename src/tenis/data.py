@@ -84,6 +84,17 @@ def _odds(raw: pd.DataFrame, source: str) -> tuple[pd.Series, pd.Series]:
     return w, lo
 
 
+OVERROUND_RANGE = (1.0, 1.2)
+
+
+def sane_odds_pair(w: pd.Series, lo: pd.Series) -> tuple[pd.Series, pd.Series]:
+    """NaN for pairs that cannot be real prices: odds <= 1 or 1/w + 1/l outside OVERROUND_RANGE."""
+    w, lo = w.where(w > 1.0), lo.where(lo > 1.0)
+    overround = 1.0 / w + 1.0 / lo
+    ok = overround.between(*OVERROUND_RANGE)
+    return w.where(ok), lo.where(ok)
+
+
 def _num(raw: pd.DataFrame, col: str) -> pd.Series:
     return pd.to_numeric(raw[col], errors="coerce") if col in raw.columns else pd.Series(np.nan, index=raw.index)
 
@@ -91,7 +102,8 @@ def _num(raw: pd.DataFrame, col: str) -> pd.Series:
 def clean_tennis_data(raw: pd.DataFrame, odds_source: str = "Avg", tour: str = "ATP") -> pd.DataFrame:
     """Standardise one tennis-data.co.uk sheet."""
     series_col = "Series" if "Series" in raw.columns else "Tier"
-    odds_w, odds_l = _odds(raw, odds_source)
+    odds_w, odds_l = sane_odds_pair(*_odds(raw, odds_source))
+    close_w, close_l = sane_odds_pair(_num(raw, CLOSING[0]), _num(raw, CLOSING[1]))
     comment = raw["Comment"].astype(str).str.strip() if "Comment" in raw.columns else "Completed"
     df = pd.DataFrame({
         "date": parse_dates(raw["Date"]),
@@ -107,7 +119,7 @@ def clean_tennis_data(raw: pd.DataFrame, odds_source: str = "Avg", tour: str = "
         "wrank": _num(raw, "WRank"), "lrank": _num(raw, "LRank"),
         "comment": comment,
         "odds_w": odds_w, "odds_l": odds_l,
-        "close_w": _num(raw, CLOSING[0]), "close_l": _num(raw, CLOSING[1]),
+        "close_w": close_w, "close_l": close_l,
     })
     df["level"] = df["series"].map(series_level)
     df["round_no"] = df["round"].map(ROUND_ORDER).fillna(1).astype(int)
