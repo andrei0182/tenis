@@ -75,6 +75,10 @@ def test_run_backtest_outputs(data_dir, tmp_path):
     sources = {r["source"] for r in saved["comparison"]}
     assert {"elo", "markov", "blend_elo", "market_bet_time", "pinnacle_close"} <= sources
     assert any("piața" in v for v in summary["verdicts"])
+    pin = next(r for r in saved["comparison"] if r["source"] == "pinnacle_close")
+    preds = pd.read_csv(tmp_path / "predictions.csv")
+    assert pin["n"] == int((preds["pin_a"].notna() & preds["q_a"].notna()).sum())
+    assert pin["market_log_loss"] is not None  # market scored on the same matches as Pinnacle
     assert set(summary["by_surface"]) <= {"Hard", "Clay", "Grass"}
     assert "Grand Slam" in summary["by_level"]
     bets = pd.read_csv(tmp_path / "bets.csv", parse_dates=["date"])

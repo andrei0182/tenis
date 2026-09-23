@@ -42,6 +42,15 @@ def test_load_tennis(tmp_path):
     assert df.loc[1, "level"] == "Masters"
 
 
+def test_sane_odds_pair_drops_impossible_prices():
+    from tenis.data import sane_odds_pair
+    w = pd.Series([1.61, 161.0, 1.0, 1.9, 1.2])
+    lo = pd.Series([2.47, 2.31, 5.0, 2.1, 1.3])
+    ow, ol = sane_odds_pair(w, lo)
+    assert ow.notna().tolist() == [True, False, False, True, False]  # 161 typo, odds of 1, overround 1.6
+    assert ol.notna().tolist() == ow.notna().tolist()
+
+
 def test_to_ab_is_random_but_consistent():
     df = pd.DataFrame({"winner": [f"w{i}" for i in range(200)], "loser": [f"l{i}" for i in range(200)],
                        "winner_name": "W", "loser_name": "L", "wrank": 1, "lrank": 2,

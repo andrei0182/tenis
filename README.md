@@ -26,7 +26,7 @@ Python 3.11+. Dependențe: numpy, pandas, scipy, scikit-learn, openpyxl, typer (
 `data/` și `outputs/` sunt în `.gitignore`. Nu se face scraping: fișierele se descarcă manual.
 
 1. **Rezultate + cote**: [tennis-data.co.uk](http://www.tennis-data.co.uk/alldata.php), fișierele anuale ATP/WTA
-   `.xlsx` (sau exportate `.csv`) direct în `data/raw/`. Fișierele vechi `.xls` trebuie salvate ca `.xlsx`.
+   `.xlsx` / `.xls` (sau exportate `.csv`) direct în `data/raw/` (un folder separat pentru ATP și WTA dacă vrei rapoarte separate).
    Fișierele WTA sunt recunoscute după coloana `WTA` sau după „wta” în nume.
 2. **Statistici de serviciu** (doar pentru modelul Markov): CSV-urile `atp_matches_YYYY.csv` /
    `wta_matches_YYYY.csv` din [tennis_atp](https://github.com/JeffSackmann/tennis_atp) /
@@ -48,7 +48,9 @@ Reguli de curățare:
   la fel meciurile Sackmann cu `RET`, `W/O`, `DEF` în scor;
 - numele se normalizează la o cheie unică (`"Djokovic N."` → `djokovic n`);
 - fiecare meci e orientat aleator A vs. B (seed fix, `--seed`), ca să nu existe bias „câștigătorul e primul”;
-- ordinea în aceeași zi: runde mai mici întâi. Carpet e tratat ca Hard.
+- ordinea în aceeași zi: runde mai mici întâi. Carpet e tratat ca Hard;
+- perechile de cote imposibile (cotă ≤ 1 sau `1/cotă_W + 1/cotă_L` în afara intervalului [1.00, 1.20], ex. o cotă 161
+  introdusă greșit în sursă) devin lipsă, separat pentru cotele de pariere și pentru Pinnacle.
 
 ### Modele
 
@@ -84,7 +86,8 @@ Reguli de curățare:
 
 Raport (`outputs/summary.json`, `comparison.csv`, consolă):
 - tabel **Elo vs. Markov vs. blend Elo vs. blend Markov vs. piață (Avg) vs. Pinnacle**: log loss, Brier,
-  nr. pariuri, yield, ROI pe bankroll, CLV mediu — fiecare sursă comparată cu piața pe aceleași meciuri;
+  nr. pariuri, yield, ROI pe bankroll, CLV mediu — fiecare sursă (inclusiv Pinnacle, care lipsește la o parte din
+  meciuri) comparată cu piața pe aceleași meciuri;
 - pentru strategia principală (`blend_elo`, sau `--model markov`): nr. pariuri, hit rate, yield, ROI, max drawdown, CLV;
 - rapoarte separate pe suprafață (Hard/Clay/Grass) și pe nivel de turneu (Grand Slam, Masters, ATP 500, ATP 250;
   WTA 1000/500/250 și vechile Premier/International sunt mapate pe aceleași niveluri);

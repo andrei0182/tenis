@@ -210,11 +210,17 @@ def comparison_table(rows: pd.DataFrame, cfg: TennisConfig) -> pd.DataFrame:
                         "market_log_loss": m["log_loss"], "market_brier": m["brier"],
                         "beats_market": s["log_loss"] < m["log_loss"], "n_bets": bm["n_bets"],
                         "yield": bm["yield"], "roi_bankroll": bm["roi_bankroll"], "clv_mean": bm["clv_mean"]})
-    for name, col in (("market_bet_time", "q_a"), ("pinnacle_close", "pin_a")):
-        ok = rows[col].notna().to_numpy()
-        if ok.any():
-            s = prob_scores(rows[col].to_numpy()[ok], y[ok])
-            records.append({"source": name, "n": int(ok.sum()), "log_loss": s["log_loss"], "brier": s["brier"]})
+    ok = rows["q_a"].notna().to_numpy()
+    if ok.any():
+        s = prob_scores(rows["q_a"].to_numpy()[ok], y[ok])
+        records.append({"source": "market_bet_time", "n": int(ok.sum()), "log_loss": s["log_loss"],
+                        "brier": s["brier"]})
+    ok = (rows["pin_a"].notna() & rows["q_a"].notna()).to_numpy()
+    if ok.any():  # Pinnacle is only quoted on some matches: compare with the market on those same matches
+        s, m = prob_scores(rows["pin_a"].to_numpy()[ok], y[ok]), prob_scores(rows["q_a"].to_numpy()[ok], y[ok])
+        records.append({"source": "pinnacle_close", "n": int(ok.sum()), "log_loss": s["log_loss"],
+                        "brier": s["brier"], "market_log_loss": m["log_loss"], "market_brier": m["brier"],
+                        "beats_market": s["log_loss"] < m["log_loss"]})
     return pd.DataFrame(records)
 
 
