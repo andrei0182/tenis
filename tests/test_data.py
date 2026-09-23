@@ -11,6 +11,12 @@ def test_normalize_player():
     assert normalize_player("Auger-Aliassime F.") == "auger aliassime f"
 
 
+def test_parse_dates():
+    from tenis.data import parse_dates
+    out = parse_dates(pd.Series(["2020-01-06", "06/01/2020", "06/01/20", "2020-01-06 00:00:00"]))
+    assert (out == pd.Timestamp("2020-01-06")).all()
+
+
 def test_series_level():
     assert series_level("Grand Slam") == "Grand Slam"
     assert series_level("Masters 1000") == "Masters"

@@ -48,6 +48,17 @@ def series_level(value: object) -> str:
     return LEVELS.get(str(value).strip().lower(), str(value).strip() or "Other")
 
 
+def parse_dates(values: pd.Series) -> pd.Series:
+    """Excel datetimes as-is; text as ISO (yyyy-mm-dd) or day-first (dd/mm/yyyy)."""
+    if pd.api.types.is_datetime64_any_dtype(values):
+        return values
+    text = values.astype(str).str.strip().str.slice(0, 10)
+    iso = pd.to_datetime(text, format="%Y-%m-%d", errors="coerce")
+    dmy = pd.to_datetime(text, format="%d/%m/%Y", errors="coerce")
+    dmy_short = pd.to_datetime(text, format="%d/%m/%y", errors="coerce")
+    return iso.fillna(dmy).fillna(dmy_short)
+
+
 def _read_any(path: Path) -> pd.DataFrame:
     if path.suffix.lower() in (".xlsx", ".xls"):
         return pd.read_excel(path)
@@ -83,7 +94,7 @@ def clean_tennis_data(raw: pd.DataFrame, odds_source: str = "Avg", tour: str = "
     odds_w, odds_l = _odds(raw, odds_source)
     comment = raw["Comment"].astype(str).str.strip() if "Comment" in raw.columns else "Completed"
     df = pd.DataFrame({
-        "date": pd.to_datetime(raw["Date"], errors="coerce", dayfirst=True),
+        "date": parse_dates(raw["Date"]),
         "tour": tour,
         "tournament": raw["Tournament"].astype(str).str.strip(),
         "tournament_no": _num(raw, tour),
