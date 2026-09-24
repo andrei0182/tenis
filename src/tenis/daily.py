@@ -84,13 +84,16 @@ def _record_html(s: dict, title: str) -> str:
 
 def _bets_table(bets: pd.DataFrame, with_date: bool, closing: bool = False) -> str:
     e = html.escape
-    head = (("<th>Data</th>" if with_date else "") + "<th>Turneu</th><th>Pariu pe</th><th>Cota Superbet</th>"
+    if "kickoff" not in bets:  # older log rows predate this column
+        bets = bets.assign(kickoff="")
+    bets = bets.assign(kickoff=bets["kickoff"].fillna(""))
+    head = (("<th>Data</th>" if with_date else "") + "<th>Ora</th><th>Turneu</th><th>Pariu pe</th><th>Cota Superbet</th>"
             "<th>Cota corectă (Pinnacle)</th><th>EV</th>"
             + ("<th>Cota Pinnacle la închidere</th><th>EV la închidere</th>" if closing else "<th>Miză sugerată</th>"))
     body = []
-    for r in bets.sort_values(["date", "ev"], ascending=[True, False]).itertuples():
+    for r in bets.sort_values(["date", "kickoff", "ev"], ascending=[True, True, False]).itertuples():
         cells = [f"{r.date:%d.%m}"] if with_date else []
-        cells += [e(str(r.tournament)), f"<b>{e(r.player)}</b> vs {e(r.opponent)}", f"{r.odds:.2f}",
+        cells += [e(str(r.kickoff)), e(str(r.tournament)), f"<b>{e(r.player)}</b> vs {e(r.opponent)}", f"{r.odds:.2f}",
                   f"{r.fair_odds:.2f}", f"{r.ev * 100:+.1f}%"]
         if closing:
             cells += ["-" if pd.isna(r.close_odds) else f"{r.close_odds:.2f}",

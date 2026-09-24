@@ -18,7 +18,15 @@ from .blend import devig
 from .staking import StakingConfig, stake_size
 
 KEY = ["date", "player", "opponent"]
-LOG_COLUMNS = ["date", "tournament", "player", "opponent", "event_id", "odds", "fair_p", "fair_odds", "ev", "stake"]
+LOG_COLUMNS = ["date", "tournament", "player", "opponent", "event_id", "odds", "fair_p", "fair_odds", "ev", "stake",
+               "kickoff"]
+LOCAL_TZ = "Europe/Bucharest"
+
+
+def _kickoff_local(starts: object) -> str:
+    """Local (Bucharest) HH:MM from Pinnacle's UTC start, empty when unknown."""
+    ts = pd.to_datetime(starts, utc=True, errors="coerce")
+    return "" if pd.isna(ts) else ts.tz_convert(LOCAL_TZ).strftime("%H:%M")
 
 
 def player_key(name: object) -> str:
@@ -96,8 +104,9 @@ def join_sources(sharp: pd.DataFrame, soft: pd.DataFrame, fuzzy: float = 0.8, ma
         used.add(best)
         rows.append({"date": pin["_d"], "tournament": pin["League"], "event_id": pin["event_id"],
                      "Player1": pin["Player1"], "Player2": pin["Player2"], "PS1": pin["PS1"], "PS2": pin["PS2"],
-                     "SB1": o1, "SB2": o2, "superbet": f"{sb['player1']} - {sb['player2']}"})
-    cols = ["date", "tournament", "event_id", "Player1", "Player2", "PS1", "PS2", "SB1", "SB2", "superbet"]
+                     "SB1": o1, "SB2": o2, "superbet": f"{sb['player1']} - {sb['player2']}",
+                     "kickoff": _kickoff_local(pin.get("starts"))})
+    cols = ["date", "tournament", "event_id", "Player1", "Player2", "PS1", "PS2", "SB1", "SB2", "superbet", "kickoff"]
     unmatched_df = pd.DataFrame(unmatched)[["player1", "player2"]] if unmatched else pd.DataFrame(
         columns=["player1", "player2"])
     return pd.DataFrame(rows, columns=cols), unmatched_df.reset_index(drop=True)
@@ -117,7 +126,8 @@ def find_value(pairs: pd.DataFrame, staking: StakingConfig, ev_min: float = 0.02
             if ev >= ev_min:
                 out.append({"date": r.date, "tournament": r.tournament, "player": player, "opponent": opponent,
                             "event_id": r.event_id, "odds": odds, "fair_p": fair[k], "fair_odds": 1 / fair[k], "ev": ev,
-                            "stake": float(stake_size(fair[k], odds, staking.bankroll, staking))})
+                            "stake": float(stake_size(fair[k], odds, staking.bankroll, staking)),
+                            "kickoff": getattr(r, "kickoff", "")})
     return pd.DataFrame(out, columns=LOG_COLUMNS)
 
 

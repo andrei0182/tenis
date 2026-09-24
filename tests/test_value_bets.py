@@ -94,6 +94,7 @@ def test_run_range_reports_and_weekly(tmp_path, monkeypatch):
     assert r.compared == 2 and len(r.bets) == 1 and len(r.unmatched) == 1
     subject, html = report_html(res)
     assert subject == "Value bets tenis (1) -- 24.09.2026" and "Yunchaokete Bu" in html
+    assert "<td>11:00</td>" in html and "ATP Hangzhou - R1" in html  # 08:00 UTC = 11:00 Bucharest
 
     monkeypatch.setattr("tenis.pinnacle.pd.Timestamp.now", lambda tz=None: NOW + pd.Timedelta(hours=20))
     res = run_range({"2026-09-24": _superbet(bu=1.5), "2026-09-25": _superbet("2026-09-25", bu=1.5)},
