@@ -1,101 +1,64 @@
 Date,event_id,starts,League,Player1,Player2,PS1,PS2
-2026-09-25,1637221052,2026-09-25 11:15:00+00:00,WTA Seoul - QF,Lanlana Tararudee,Maya Joint,1.8197,2.08
-2026-09-25,1637241169,2026-09-25 10:30:00+00:00,WTA Singapore - QF,Mirra Andreeva,Leylah Fernandez,1.2833,4.08
-2026-09-26,1637241158,2026-09-26 02:00:00+00:00,ATP Hangzhou - R16,Daniil Medvedev,Valentin Royer,1.2717,4.11
-2026-09-25,1637265083,2026-09-25 09:00:00+00:00,Billie Jean King Cup - Tie,Spain,Czech Republic,7.0,1.105
-2026-09-25,1637265137,2026-09-25 08:15:00+00:00,WTA Seoul - QF,Taylah Preston,Alina Korneeva,3.4,1.3584
-2026-09-25,1637265127,2026-09-25 12:00:00+00:00,ATP Hangzhou - R16,Jaime Faria,Hugo Gaston,1.5236,2.69
-2026-09-25,1637272117,2026-09-25 09:00:00+00:00,ATP Hangzhou - R16,Rinky Hijikata,Andrey Rublev,3.52,1.3425
-2026-09-25,1637277933,2026-09-25 08:30:00+00:00,ATP Chengdu Open - R16,Nikoloz Basilashvili,Botic Van de Zandschulp,2.7,1.5181
-2026-09-26,1637269543,2026-09-26 01:00:00+00:00,ATP Chengdu Open - R16,Federico Cina,Alexandre Muller,1.9174,1.9709
-2026-09-25,1637277940,2026-09-25 09:00:00+00:00,WTA 125K Ankara - QF,Teodora Kostovic,Fangran Tian,1.3049,3.6
-2026-09-25,1637241200,2026-09-25 09:00:00+00:00,WTA 125K Ankara - QF,Ksenia Zaytseva,Polina Iatcenko,2.7,1.4854
-2026-09-25,1637259095,2026-09-25 11:00:00+00:00,WTA 125K Ankara - QF,Berfu Cengiz,Han Shi,2.51,1.5525
-2026-09-25,1637281622,2026-09-25 12:00:00+00:00,WTA 125K Porto - QF,Reese Brantmeier,Angelina Voloshchuk,1.4237,2.89
-2026-09-25,1637248813,2026-09-25 13:30:00+00:00,WTA 125K Porto - QF,Maria Timofeeva,Gabriela Knutson,1.3817,3.09
-2026-09-25,1637240815,2026-09-25 12:00:00+00:00,WTA 125K Porto - QF,Elena Malygina,Sinja Kraus,4.13,1.2398
-2026-09-25,1637248879,2026-09-25 10:30:00+00:00,WTA 125k Tolentino - QF,Guiomar Maristany Zuleta De Reales,Rebeka Masarova,2.14,1.7407
-2026-09-25,1637259174,2026-09-25 12:00:00+00:00,WTA 125k Tolentino - QF,Mia Ristic,Jessica Pieri,1.155,5.39
-2026-09-25,1637244601,2026-09-25 11:30:00+00:00,ATP Challenger Genoa - QF,Marvin Moeller,Dali Blanch,1.813,2.07
-2026-09-25,1637262774,2026-09-25 11:30:00+00:00,ATP Challenger Genoa - QF,Lukas Neumayer,Luka Mikrut,2.47,1.5917
-2026-09-25,1637244547,2026-09-25 10:30:00+00:00,ATP Challenger Plovdiv - QF,Max Alcala Gurri,Pol Martin Tiffon,1.6369,2.36
-2026-09-25,1637240829,2026-09-25 10:30:00+00:00,ATP Challenger Plovdiv - QF,Calvin Hemery,Carlos Taberner,2.39,1.6289
-2026-09-25,1637277960,2026-09-25 09:00:00+00:00,ATP Challenger St Tropez - QF,Murphy Cassone,Daniel Masur,1.5587,2.58
-2026-09-25,1637241148,2026-09-25 11:00:00+00:00,ATP Challenger St Tropez - QF,Dino Prizmic,Daniil Glinka,1.2198,4.77
-2026-09-25,1637248881,2026-09-25 15:30:00+00:00,ATP Challenger St Tropez - QF,Titouan Droguet,Mark Lajal,1.9091,1.9615
-2026-09-25,1637269461,2026-09-25 18:00:00+00:00,ATP Challenger Buenos Aires - QF,Joaquin Aguilar Cardozo,Juan Pablo Varillas,1.6289,2.36
-2026-09-25,1637262825,2026-09-25 16:30:00+00:00,ATP Challenger Buenos Aires - QF,Facundo Mena,Nicolas Kicker,1.6494,2.32
-2026-09-26,1637268708,2026-09-25 23:00:00+00:00,ATP Challenger San Diego - QF,Dylan Dietrich,Henry Searle,1.6897,2.24
-2026-09-25,1637260755,2026-09-25 19:00:00+00:00,ATP Challenger San Diego - QF,Igor Marcondes,Federico Agustin Gomez,2.44,1.5882
-2026-09-26,1637277946,2026-09-26 02:00:00+00:00,ATP Hangzhou - R16,Quentin Halys,Roman Safiullin,2.13,1.7692
-2026-09-26,1637269527,2026-09-26 02:00:00+00:00,ATP Hangzhou - R16,Yunchaokete Bu,Kamil Majchrzak,2.09,1.8
-2026-09-26,1637281601,2026-09-26 01:00:00+00:00,ATP Chengdu Open - R16,Valentin Vacherot,Lloyd Harris,1.9009,1.9709
-2026-09-25,1637281647,2026-09-25 12:00:00+00:00,WTA Singapore - QF,Maria Sakkari,Talia Gibson,1.4545,2.92
-2026-09-26,1637272171,2026-09-26 01:00:00+00:00,ATP Chengdu Open - R16,Martin Damm,Hubert Hurkacz,3.31,1.3663
-2026-09-25,1637277976,2026-09-25 13:00:00+00:00,ATP Challenger Genoa - QF,Mika Petkovic,Francesco Forti,2.22,1.7042
-2026-09-25,1637281603,2026-09-25 12:00:00+00:00,ATP Challenger Plovdiv - QF,Adrian Andreev,Izan Almazan Valiente,1.7407,2.16
-2026-09-25,1637277999,2026-09-25 14:00:00+00:00,ATP Challenger Plovdiv - QF,Felix Gill,Jonas Forejtek,1.6289,2.36
-2026-09-25,1637297133,2026-09-25 12:00:00+00:00,Men's Exhibition Laver Cup,Casper Ruud,Francisco Cerundolo,1.9091,1.9091
-2026-09-25,1637295547,2026-09-25 13:30:00+00:00,Men's Exhibition Laver Cup,Jakub Mensik,Brandon Nakashima,1.6993,2.14
-2026-09-25,1637297134,2026-09-25 18:00:00+00:00,Men's Exhibition Laver Cup,Rafael Jodar,Alexander Bublik,1.5319,2.42
-2026-09-25,1637272206,2026-09-25 08:30:00+00:00,ITF Women Monastir - QF,Kseniia Ruchkina,Irem Kurt,1.7752,2.07
-2026-09-25,1637281645,2026-09-25 08:30:00+00:00,ITF Women Monastir - QF,Lan Mi,Kristina Kroitor,2.14,1.7246
-2026-09-25,1637281646,2026-09-25 10:00:00+00:00,ITF Women Monastir - QF,Eliz Maloney,Ellie Daniels,1.3145,3.48
-2026-09-25,1637272178,2026-09-25 08:30:00+00:00,ITF Women Constanta - QF,Maia Ilinca Burcescu,Anne Schaefer,1.9524,1.8696
-2026-09-25,1637262848,2026-09-25 12:00:00+00:00,ATP Laver Cup,Europe,World,1.4717,2.71
-2026-09-25,1637272205,2026-09-25 10:00:00+00:00,ITF Women Monastir - QF,Ekaterina Dotsenko,Astrid Cirotte,1.3356,3.34
-2026-09-25,1637272215,2026-09-25 08:15:19+00:00,ITF Women Plovdiv - QF,Elizara Yaneva,Lidia Encheva,1.2778,3.76
-2026-09-25,1637281652,2026-09-25 09:30:00+00:00,ITF Women Plovdiv - QF,Ane Mintegi Del Olmo,Ilinca Dalina Amariei,1.241,4.12
-2026-09-25,1637277996,2026-09-25 09:30:00+00:00,ITF Women Plovdiv - QF,Loes Ebeling Koning,Alessandra Mazzola,1.2299,4.25
-2026-09-25,1637295539,2026-09-25 15:30:00+00:00,WTA 125k Tolentino - QF,Ekaterine Gorgodze,Oksana Selekhmeteva,2.77,1.4566
+2026-09-26,1637221052,2026-09-26 03:00:00+00:00,WTA Seoul - QF,Lanlana Tararudee,Maya Joint,1.8197,2.08
+2026-09-26,1637241158,2026-09-26 02:00:00+00:00,ATP Hangzhou - R16,Daniil Medvedev,Valentin Royer,1.2841,3.99
+2026-09-25,1637265127,2026-09-25 12:15:00+00:00,ATP Hangzhou - R16,Jaime Faria,Hugo Gaston,1.5376,2.64
+2026-09-26,1637269543,2026-09-26 06:30:00+00:00,ATP Chengdu Open - R16,Federico Cina,Alexandre Muller,1.9901,1.9009
+2026-09-25,1637281622,2026-09-25 12:08:07+00:00,WTA 125K Porto - QF,Reese Brantmeier,Angelina Voloshchuk,1.4367,2.88
+2026-09-25,1637248813,2026-09-25 13:30:00+00:00,WTA 125K Porto - QF,Maria Timofeeva,Gabriela Knutson,1.3831,3.12
+2026-09-25,1637259174,2026-09-25 12:15:00+00:00,WTA 125k Tolentino - QF,Mia Ristic,Jessica Pieri,1.155,5.53
+2026-09-25,1637241148,2026-09-25 12:30:00+00:00,ATP Challenger St Tropez - QF,Dino Prizmic,Daniil Glinka,1.2242,4.72
+2026-09-25,1637248881,2026-09-25 15:30:00+00:00,ATP Challenger St Tropez - QF,Titouan Droguet,Mark Lajal,1.8547,2.04
+2026-09-25,1637269461,2026-09-25 19:00:00+00:00,ATP Challenger Buenos Aires - QF,Joaquin Aguilar Cardozo,Juan Pablo Varillas,1.6803,2.28
+2026-09-25,1637262825,2026-09-25 17:00:00+00:00,ATP Challenger Buenos Aires - QF,Facundo Mena,Nicolas Kicker,1.6944,2.25
+2026-09-26,1637268708,2026-09-25 23:00:00+00:00,ATP Challenger San Diego - QF,Dylan Dietrich,Henry Searle,1.6329,2.37
+2026-09-25,1637260755,2026-09-25 19:00:00+00:00,ATP Challenger San Diego - QF,Igor Marcondes,Federico Agustin Gomez,2.37,1.6329
+2026-09-26,1637277946,2026-09-26 02:00:00+00:00,ATP Hangzhou - R16,Quentin Halys,Roman Safiullin,2.14,1.7752
+2026-09-26,1637269527,2026-09-26 02:00:00+00:00,ATP Hangzhou - R16,Yunchaokete Bu,Kamil Majchrzak,2.09,1.813
+2026-09-26,1637281601,2026-09-26 01:00:00+00:00,ATP Chengdu Open - R16,Valentin Vacherot,Lloyd Harris,1.9091,1.9804
+2026-09-25,1637281647,2026-09-25 12:15:00+00:00,WTA Singapore - QF,Maria Sakkari,Talia Gibson,1.4695,2.91
+2026-09-26,1637272171,2026-09-26 06:30:00+00:00,ATP Chengdu Open - R16,Martin Damm,Hubert Hurkacz,3.34,1.3704
+2026-09-25,1637277976,2026-09-25 13:00:00+00:00,ATP Challenger Genoa - QF,Mika Petkovic,Francesco Forti,2.24,1.6993
+2026-09-25,1637277999,2026-09-25 14:00:00+00:00,ATP Challenger Plovdiv - QF,Felix Gill,Jonas Forejtek,1.5988,2.45
+2026-09-25,1637297133,2026-09-25 13:00:00+00:00,Men's Exhibition Laver Cup,Casper Ruud,Francisco Cerundolo,1.8696,2.0
+2026-09-25,1637295547,2026-09-25 13:30:00+00:00,Men's Exhibition Laver Cup,Jakub Mensik,Brandon Nakashima,1.6849,2.27
+2026-09-25,1637297134,2026-09-25 18:00:00+00:00,Men's Exhibition Laver Cup,Rafael Jodar,Alexander Bublik,1.5263,2.61
+2026-09-25,1637295539,2026-09-25 15:30:00+00:00,WTA 125k Tolentino - QF,Ekaterine Gorgodze,Oksana Selekhmeteva,2.79,1.4608
 2026-09-25,1637295550,2026-09-25 17:30:00+00:00,WTA 125k Tolentino - QF,Nuria Brancaccio,Julia Grabher,2.17,1.7042
-2026-09-25,1637281641,2026-09-25 13:30:00+00:00,WTA 125K Porto - QF,Mia Pohankova,Katie Swan,1.885,1.9346
-2026-09-25,1637281653,2026-09-25 13:30:00+00:00,WTA 125K Ankara - QF,Deniz Dilek,Anastasia Gasanova,5.39,1.155
-2026-09-25,1637295535,2026-09-25 10:30:00+00:00,ITF Women Yecla - QF,Kateryna Lazarenko,Nahia Berecoechea,3.64,1.2933
-2026-09-25,1637297118,2026-09-25 12:00:00+00:00,ITF Women Yecla - QF,Charo Esquiva Banuls,Tiphanie Lemaitre,1.6897,2.2
-2026-09-25,1637295534,2026-09-25 10:30:00+00:00,ITF Women Yecla - QF,Carmen Gallardo Guevara,Georgina Garcia Perez,1.6369,2.29
-2026-09-25,1637281619,2026-09-25 08:30:00+00:00,ITF Women Constanta - QF,Giulia Safina Popa,Maria Herazo,1.096,7.63
-2026-09-25,1637277965,2026-09-25 08:30:00+00:00,ITF Men Telavi - QF,Dragos Nicolae Madaras,Filiberto Fumagalli,1.1869,4.87
-2026-09-25,1637278024,2026-09-25 09:30:00+00:00,ITF Men Setubal - QF,Finn Murgett,Michael Agwi,2.69,1.4808
-2026-09-25,1637290076,2026-09-25 11:00:00+00:00,ITF Men Setubal - QF,Inaki Montes-De La Torre,Lui Maxted,1.3333,3.36
-2026-09-25,1637290077,2026-09-25 09:30:00+00:00,ITF Men Setubal - QF,Alec Deckers,Diogo Morais,1.3731,3.13
-2026-09-25,1637281684,2026-09-25 11:00:00+00:00,ITF Men Setubal - QF,Robin Bertrand,Philip Henning,2.47,1.5556
-2026-09-25,1637277987,2026-09-25 10:00:00+00:00,ITF Men Sabadell - QF,Lorenzo Giustino,Gerard Campana Lee,1.6211,2.32
-2026-09-25,1637281644,2026-09-25 10:00:00+00:00,ITF Men Sabadell - QF,Sander Jong,Ioannis Xilas,1.3831,3.08
-2026-09-25,1637272203,2026-09-25 10:00:00+00:00,ITF Men Sabadell - QF,Lilian Marmousez,Luka Talan Lopatic,1.13,6.23
-2026-09-25,1637277989,2026-09-25 08:30:00+00:00,ITF Men Monastir - QF,Toby Martin,Ewen Lumsden,2.21,1.6803
-2026-09-25,1637277990,2026-09-25 08:30:00+00:00,ITF Men Monastir - QF,Samuel Vincent Ruggeri,Andrea Colombo,1.5348,2.53
-2026-09-25,1637277988,2026-09-25 10:00:00+00:00,ITF Men Monastir - QF,Liam Branger,Etienne Donnet,2.7,1.4762
-2026-09-25,1637277991,2026-09-25 09:00:00+00:00,ITF Men Forbach - QF,Stefan Seifert,Daniel De Jonge,2.29,1.6369
-2026-09-25,1637277992,2026-09-25 11:00:00+00:00,ITF Men Forbach - QF,Arthur Nagel,Timeo Trufelli,1.1821,4.96
-2026-09-25,1637297110,2026-09-25 14:00:00+00:00,ITF Men Forbach - QF,Flynn Thomas,Theo Herrmann,1.4032,2.9
-2026-09-25,1637281675,2026-09-25 15:00:00+00:00,ITF Men Falun - SF,Eero Vasa,Samir Banerjee,3.45,1.2882
-2026-09-25,1637281674,2026-09-25 15:00:00+00:00,ITF Men Falun - SF,Henry Bernet,Andreja Petrovic,1.2398,3.84
-2026-09-25,1637290093,2026-09-25 10:30:00+00:00,ATP Challenger St Tropez - QF,Harold Mayot,Jesper De Jong,2.03,1.8696
-2026-09-25,1637290082,2026-09-25 15:30:00+00:00,ITF Women Yecla - QF,Kira Pavlova,Angela Fita Boluda,1.7246,2.06
-2026-09-25,1637272204,2026-09-25 08:30:00+00:00,ITF Men Monastir - QF,Paul Colin,Daniel Domingos,1.8621,1.9524
-2026-09-25,1637295545,2026-09-25 15:00:00+00:00,ATP Challenger Buenos Aires - QF,Pedro Boscardin Dias,Eduardo Ribeiro,1.8475,2.01
-2026-09-25,1637297136,2026-09-25 16:00:00+00:00,ATP Challenger Genoa - QF,Jay Clarke,Carlo Alberto Caniato,1.9804,1.8772
-2026-09-26,1637290097,2026-09-25 21:00:00+00:00,ATP Challenger San Diego - QF,Tristan Boyer,Timo Legout,1.9174,1.9346
-2026-09-25,1637295601,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Madison Brengle,Ella McDonald,1.4808,2.56
-2026-09-25,1637297180,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Lucciana Perez Alarcon,Emma Kamper Malmkjaer,1.5102,2.48
-2026-09-25,1637297179,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Hanna Chang,Janae Preston,2.27,1.5988
-2026-09-25,1637290144,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Kayla Day,Anna Rogers,1.049,10.01
-2026-09-25,1637290150,2026-09-25 15:00:00+00:00,ITF Men Curitiba - QF,Juan Sebastian Osorio,Pedro Sakamoto,3.44,1.289
-2026-09-25,1637297185,2026-09-25 16:00:00+00:00,ITF Men Curitiba - QF,Mateus Alves,Joao Victor Couto Loureiro,1.076,7.73
-2026-09-25,1637295604,2026-09-25 16:30:00+00:00,ITF Men Curitiba - QF,Nicolas Zanellato,Joao Eduardo Schiessl,2.2,1.641
-2026-09-25,1637295603,2026-09-25 18:00:00+00:00,ITF Men Curitiba - QF,Wilson Leite,Jose Pereira,1.885,1.8696
-2026-09-25,1637295606,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Jennifer Rosa Dourado,Josefina Estevez,7.87,1.073
-2026-09-25,1637307526,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Leticia Garcia Vidal,Julia Konishi Camargo Silva,2.09,1.7042
-2026-09-25,1637297186,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Ana Sofia Sanchez,Astra Sharma,2.23,1.6211
-2026-09-25,1637295607,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Luna Maria Cinalli,Paola Lopez,1.117,5.93
-2026-09-25,1637295612,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Evan Bynoe,William Jansen,3.22,1.3215
+2026-09-25,1637281641,2026-09-25 13:30:00+00:00,WTA 125K Porto - QF,Mia Pohankova,Katie Swan,1.8333,2.01
+2026-09-25,1637281653,2026-09-25 13:30:00+00:00,WTA 125K Ankara - QF,Deniz Dilek,Anastasia Gasanova,5.19,1.1761
+2026-09-25,1637281644,2026-09-25 12:30:00+00:00,ITF Men Sabadell - QF,Sander Jong,Ioannis Xilas,1.3831,3.08
+2026-09-25,1637297110,2026-09-25 14:00:00+00:00,ITF Men Forbach - QF,Flynn Thomas,Theo Herrmann,1.4132,2.94
+2026-09-25,1637281675,2026-09-25 15:00:00+00:00,ITF Men Falun - SF,Eero Vasa,Samir Banerjee,3.41,1.3247
+2026-09-25,1637281674,2026-09-25 15:00:00+00:00,ITF Men Falun - SF,Henry Bernet,Andreja Petrovic,1.2198,4.38
+2026-09-25,1637290082,2026-09-25 15:30:00+00:00,ITF Women Yecla - QF,Kira Pavlova,Angela Fita Boluda,1.7692,2.08
+2026-09-25,1637295545,2026-09-25 15:00:00+00:00,ATP Challenger Buenos Aires - QF,Pedro Boscardin Dias,Eduardo Ribeiro,1.8696,2.01
+2026-09-25,1637297136,2026-09-25 16:00:00+00:00,ATP Challenger Genoa - QF,Jay Clarke,Carlo Alberto Caniato,2.01,1.8547
+2026-09-26,1637290097,2026-09-25 21:00:00+00:00,ATP Challenger San Diego - QF,Tristan Boyer,Timo Legout,1.885,1.9709
+2026-09-25,1637295601,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Madison Brengle,Ella McDonald,1.4902,2.59
+2026-09-25,1637297180,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Lucciana Perez Alarcon,Emma Kamper Malmkjaer,1.5208,2.51
+2026-09-25,1637297179,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Hanna Chang,Janae Preston,2.35,1.5848
+2026-09-25,1637290144,2026-09-25 17:00:00+00:00,ITF Women Berkeley - QF,Kayla Day,Anna Rogers,1.061,9.52
+2026-09-25,1637290150,2026-09-25 15:00:00+00:00,ITF Men Curitiba - QF,Juan Sebastian Osorio,Pedro Sakamoto,3.7,1.2849
+2026-09-25,1637297185,2026-09-25 16:00:00+00:00,ITF Men Curitiba - QF,Mateus Alves,Joao Victor Couto Loureiro,1.084,8.33
+2026-09-25,1637295604,2026-09-25 16:30:00+00:00,ITF Men Curitiba - QF,Nicolas Zanellato,Joao Eduardo Schiessl,2.22,1.6536
+2026-09-25,1637295603,2026-09-25 18:00:00+00:00,ITF Men Curitiba - QF,Wilson Leite,Jose Pereira,1.8475,1.9434
+2026-09-25,1637295606,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Jennifer Rosa Dourado,Josefina Estevez,11.31,1.053
+2026-09-25,1637307526,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Leticia Garcia Vidal,Julia Konishi Camargo Silva,2.05,1.7813
+2026-09-25,1637297186,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Ana Sofia Sanchez,Astra Sharma,2.45,1.565
+2026-09-25,1637295607,2026-09-25 15:00:00+00:00,ITF Women Belem - QF,Luna Maria Cinalli,Paola Lopez,1.128,6.29
+2026-09-25,1637295612,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Evan Bynoe,William Jansen,3.38,1.3279
 2026-09-26,1637297200,2026-09-26 00:30:00+00:00,ATP Challenger San Diego - QF,Nishesh Basavareddy,Andres Andrade,1.3378,3.42
-2026-09-25,1637295611,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Charlie Swaine,Oliver Bonding,7.99,1.071
-2026-09-25,1637307529,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Sean Daryabeigi,Tito Chavez,1.5814,2.31
-2026-09-25,1637307558,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Gabe Avram,Antonin Witz,1.6452,2.19
+2026-09-26,1637265121,2026-09-26 02:00:00+00:00,WTA Seoul - QF,Anna Bondar,Elena-Gabriela Ruse,2.5,1.5882
+2026-09-25,1637295611,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Charlie Swaine,Oliver Bonding,8.64,1.079
+2026-09-25,1637307529,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Sean Daryabeigi,Tito Chavez,1.6711,2.22
+2026-09-25,1637307558,2026-09-25 16:00:00+00:00,ITF Men Columbia - QF,Gabe Avram,Antonin Witz,2.2,1.6897
 2026-09-26,1637307557,2026-09-26 03:00:00+00:00,ITF Women Nanao - SF,Sayaka Ishii,Hiromi Abe,3.29,1.3115
 2026-09-26,1637297177,2026-09-26 09:00:00+00:00,Billie Jean King Cup - Tie,Italy,Ukraine,1.9091,1.9091
-2026-09-25,1637281612,2026-09-25 08:11:59+00:00,ITF Women Santa Margherita di Pula - QF,Marie Mettraux,Denise Valente,1.2421,4.11
-2026-09-25,1637281651,2026-09-25 08:13:36+00:00,ITF Women Plovdiv - QF,Caijsa Hennemann,Anja Stankovic,1.3378,3.32
-2026-09-25,1637272186,2026-09-25 08:16:42+00:00,ITF Men Baku - QF,Arvid Nordquist,Millen Hurrion,3.48,1.3135
+2026-09-26,1637277973,2026-09-26 05:00:00+00:00,ATP Chengdu Open - R16,Juan Manuel Cerundolo,Alejandro Davidovich Fokina,2.38,1.6289
+2026-09-26,1637265137,2026-09-26 03:30:00+00:00,WTA Seoul - QF,Taylah Preston,Alina Korneeva,3.4,1.3584
+2026-09-26,1637281633,2026-09-26 02:00:00+00:00,ATP Hangzhou - R16,Chak Lam Coleman Wong,Adolfo Daniel Vallejo,1.5208,2.66
+2026-09-26,1637312134,2026-09-26 02:00:00+00:00,ITF Women Maanshan - SF,Zijun Jiang,Anna Kubareva,5.31,1.141
+2026-09-26,1637307564,2026-09-26 04:00:00+00:00,ITF Men Yinchuan - SF,Alibek Kachmazov,Mukund Sasikumar,1.141,5.31
+2026-09-26,1637307556,2026-09-26 03:00:00+00:00,ITF Women Nanao - SF,Sakura Hosogi,Michika Ozeki,1.096,6.72
+2026-09-25,1637295583,2026-09-25 19:30:00+00:00,ATP Challenger Buenos Aires - QF,Juan Carlos Prado Angelo,Alex Barrena,1.7519,2.14
+2026-09-25,1637240815,2026-09-25 12:12:07+00:00,WTA 125K Porto - QF,Elena Malygina,Sinja Kraus,4.1,1.25
