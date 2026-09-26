@@ -1,11 +1,11 @@
 Date,event_id,starts,League,Player1,Player2,PS1,PS2
-2026-09-27,1637312176,2026-09-27 02:00:00+00:00,ATP Chengdu Open - QF,Jenson Brooksby,Nikoloz Basilashvili,1.8547,2.06
+2026-09-27,1637312176,2026-09-27 02:00:00+00:00,ATP Chengdu Open - QF,Jenson Brooksby,Nikoloz Basilashvili,1.8772,2.03
 2026-09-27,1637312227,2026-09-27 02:00:00+00:00,ATP Chengdu Open - QF,Adrian Mannarino,Denis Shapovalov,3.08,1.4292
 2026-09-27,1637312263,2026-09-27 02:00:00+00:00,ATP Hangzhou - QF,Fabian Marozsan,Kyrian Jacquet,1.8333,2.09
 2026-09-26,1637325600,2026-09-26 14:00:00+00:00,WTA 125k Tolentino - SF,Guiomar Maristany Zuleta De Reales,Jessica Pieri,1.16,5.69
 2026-09-27,1637330250,2026-09-27 02:00:00+00:00,ATP Hangzhou - QF,Hugo Gaston,Andrey Rublev,4.29,1.2558
 2026-09-26,1637360039,2026-09-26 19:00:00+00:00,ITF Women Berkeley - SF,Lucciana Perez Alarcon,Janae Preston,2.43,1.5291
-2026-09-26,1637360040,2026-09-26 19:00:00+00:00,ITF Women Berkeley - SF,Kayla Day,Ella McDonald,1.101,6.48
+2026-09-26,1637360040,2026-09-26 19:00:00+00:00,ITF Women Berkeley - SF,Kayla Day,Ella McDonald,1.095,6.76
 2026-09-26,1637354488,2026-09-26 15:30:00+00:00,WTA 125k Tolentino - SF,Julia Grabher,Oksana Selekhmeteva,2.04,1.8264
 2026-09-26,1637359917,2026-09-26 16:00:00+00:00,ITF Men Columbia - SF,William Jansen,Sean Daryabeigi,1.3906,2.96
 2026-09-26,1637351076,2026-09-26 13:00:00+00:00,ITF Men Forbach - SF,Arthur Nagel,Flynn Thomas,1.2421,4.11
@@ -25,8 +25,9 @@ Date,event_id,starts,League,Player1,Player2,PS1,PS2
 2026-09-27,1637373233,2026-09-27 04:00:00+00:00,WTA 125k Jingshan - Qualifiers,Amelia Rajecki,Chengyiyi Yuan,1.5076,2.6
 2026-09-27,1637373263,2026-09-27 01:00:00+00:00,ITF Women Nanao - Final,Sakura Hosogi,Hiromi Abe,4.42,1.1901
 2026-09-26,1637370430,2026-09-26 15:00:00+00:00,ITF Men Columbia - SF,Oliver Bonding,Gabe Avram,1.1529,5.56
-2026-09-26,1637370490,2026-09-26 13:30:00+00:00,ATP Laver Cup,Alexander Zverev,Alex De Minaur,1.2857,3.82
-2026-09-26,1637370421,2026-09-26 12:00:00+00:00,ATP Laver Cup,Flavio Cobolli,Learner Tien,2.74,1.4854
+2026-09-26,1637370490,2026-09-26 13:30:00+00:00,ATP Laver Cup,Alexander Zverev,Alex De Minaur,1.2907,3.78
+2026-09-26,1637370421,2026-09-26 12:00:00+00:00,ATP Laver Cup,Flavio Cobolli,Learner Tien,2.72,1.4902
 2026-09-26,1637373252,2026-09-26 18:00:00+00:00,ATP Laver Cup,Carlos Alcaraz,Taylor Fritz,1.3096,3.63
 2026-09-27,1637370499,2026-09-27 04:30:00+00:00,WTA 125k Jingshan - Qualifiers,Kristiana Sidorova,Meiqi Guo,1.271,3.82
 2026-09-27,1637386876,2026-09-26 21:00:00+00:00,ITF Women Constanta - Final,Alesia Breaz,Giulia Safina Popa,2.12,1.6849
+2026-09-26,1637370554,2026-09-26 11:57:03+00:00,ITF Men Pardubice - SF,Jiri Cizek,Sebastian Dominko,8.4,1.083
