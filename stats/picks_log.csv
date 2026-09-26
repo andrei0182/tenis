@@ -14,9 +14,10 @@ date,tournament,player1,player2,recommended_player,opponent,edge_pp,rec_odds,com
 2026-09-24,,Jonas Forejtek,Maxime Chazal,Maxime Chazal,Jonas Forejtek,17.6,2.42,56.0,9.5,1.52,3331082.0,lost,2:1,2026-09-25
 2026-09-24,,Julita Saner,Arina Gamretkaia,Arina Gamretkaia,Julita Saner,33.2,4.0,55.8,6.5,1.61,3331950.0,lost,2:0,2026-09-25
 2026-09-24,,Ellie Daniels,Anastasia Bertacchi,Ellie Daniels,Anastasia Bertacchi,17.799999999999997,2.45,55.0,10.5,1.73,3331760.0,won,2:1,2026-09-25
-2026-09-25,,Sota Uranaka,Abdumalik Kamalov,Abdumalik Kamalov,Sota Uranaka,61.6,2.37,100.0,10.5,1.67,3332272.0,pending,,
-2026-09-25,,Ana Sofia Sanchez,Astra Sharma,Ana Sofia Sanchez,Astra Sharma,24.4,2.0,70.3,10.5,1.51,3332488.0,pending,,
-2026-09-25,,Liam Branger,Etienne Donnet,Liam Branger,Etienne Donnet,18.5,2.35,57.3,10.5,1.64,3332278.0,pending,,
-2026-09-25,,Flynn Thomas,Theo Herrmann,Theo Herrmann,Flynn Thomas,22.900000000000006,2.67,57.0,9.5,1.66,3332378.0,pending,,
-2026-09-25,,Kateryna Lazarenko,Nahia Berecoechea,Kateryna Lazarenko,Nahia Berecoechea,29.500000000000004,3.35,56.7,7.5,1.64,3332224.0,pending,,
-2026-09-25,,Calvin Hemery,Carlos Taberner,Calvin Hemery,Carlos Taberner,16.1,2.32,56.2,10.5,1.54,3331810.0,pending,,
+2026-09-25,,Sota Uranaka,Abdumalik Kamalov,Abdumalik Kamalov,Sota Uranaka,61.6,2.37,100.0,10.5,1.67,3332272.0,lost,2:1,2026-09-26
+2026-09-25,,Ana Sofia Sanchez,Astra Sharma,Ana Sofia Sanchez,Astra Sharma,24.4,2.0,70.3,10.5,1.51,3332488.0,lost,2:0,2026-09-26
+2026-09-25,,Liam Branger,Etienne Donnet,Liam Branger,Etienne Donnet,18.5,2.35,57.3,10.5,1.64,3332278.0,lost,2:1,2026-09-26
+2026-09-25,,Flynn Thomas,Theo Herrmann,Theo Herrmann,Flynn Thomas,22.900000000000006,2.67,57.0,9.5,1.66,3332378.0,lost,2:1,2026-09-26
+2026-09-25,,Kateryna Lazarenko,Nahia Berecoechea,Kateryna Lazarenko,Nahia Berecoechea,29.500000000000004,3.35,56.7,7.5,1.64,3332224.0,won,2:1,2026-09-26
+2026-09-25,,Calvin Hemery,Carlos Taberner,Calvin Hemery,Carlos Taberner,16.1,2.32,56.2,10.5,1.54,3331810.0,lost,2:1,2026-09-26
+2026-09-26,,Astra Sharma,Paola Lopez,Paola Lopez,Astra Sharma,52.800000000000004,20.0,57.6,2.5,1.37,3332846.0,pending,,
