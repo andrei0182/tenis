@@ -1,76 +1,50 @@
 Date,event_id,starts,League,Player1,Player2,PS1,PS2
-2026-09-27,1637312227,2026-09-27 09:00:00+00:00,ATP Chengdu Open - QF,Adrian Mannarino,Denis Shapovalov,3.35,1.3774
-2026-09-27,1637386877,2026-09-27 09:30:00+00:00,ATP Hangzhou - QF,Roman Safiullin,Yunchaokete Bu,1.8475,2.07
-2026-09-27,1637387970,2026-09-27 10:30:00+00:00,ATP Chengdu Open - QF,Lloyd Harris,Hubert Hurkacz,2.56,1.578
-2026-09-27,1637388044,2026-09-27 09:00:00+00:00,WTA Singapore - Final,Leylah Fernandez,Talia Gibson,1.4902,2.83
-2026-09-27,1637389611,2026-09-27 10:00:00+00:00,ITF Men Sabadell - Final,Gerard Campana Lee,Sander Jong,2.24,1.6623
-2026-09-27,1637396162,2026-09-27 11:00:00+00:00,ITF Men Monastir - Final,Etienne Donnet,Paul Colin,1.6329,2.3
-2026-09-27,1637398415,2026-09-27 09:30:00+00:00,ITF Men Setubal - Final,Inaki Montes-De La Torre,Alec Deckers,1.289,3.67
-2026-09-27,1637398433,2026-09-27 09:00:00+00:00,WTA 125K Ankara - Final,Berfu Cengiz,Teodora Kostovic,3.11,1.4032
-2026-09-27,1637402868,2026-09-27 10:00:00+00:00,WTA 125K Porto - Final,Maria Timofeeva,Reese Brantmeier,1.5882,2.48
-2026-09-27,1637402882,2026-09-27 09:00:00+00:00,ATP Challenger Genoa - Final,Luka Mikrut,Carlo Alberto Caniato,1.5814,2.5
-2026-09-27,1637402908,2026-09-27 13:00:00+00:00,ITF Women Belem - Final,Paola Lopez,Leticia Garcia Vidal,1.7463,2.07
-2026-09-27,1637406695,2026-09-27 11:35:00+00:00,ATP Hangzhou - QF,Daniil Medvedev,Chak Lam Coleman Wong,1.25,4.46
-2026-09-27,1637402903,2026-09-27 10:00:00+00:00,ITF Men Forbach - Final,Flynn Thomas,Stefan Seifert,2.33,1.6211
-2026-09-27,1637406511,2026-09-27 09:00:00+00:00,ATP Challenger Plovdiv - Final,Max Alcala Gurri,Jonas Forejtek,1.463,2.86
-2026-09-27,1637407126,2026-09-27 12:30:00+00:00,ATP Challenger St Tropez - Final,Titouan Droguet,Harold Mayot,1.6098,2.42
-2026-09-27,1637407150,2026-09-27 14:00:00+00:00,WTA 125k Tolentino - Final,Guiomar Maristany Zuleta De Reales,Julia Grabher,1.8403,2.02
-2026-09-27,1637413021,2026-09-27 16:00:00+00:00,ITF Men Columbia - Final,Oliver Bonding,Sean Daryabeigi,1.2778,3.52
-2026-09-27,1637413167,2026-09-27 14:00:00+00:00,ITF Men Curitiba - Final,Mateus Alves,Pedro Sakamoto,1.3472,3.18
-2026-09-27,1637396163,2026-09-27 08:42:42+00:00,ITF Women Monastir - Final,Ellie Daniels,Ekaterina Dotsenko,3.33,1.3367
-2026-09-27,1637413181,2026-09-27 09:00:00+00:00,Billie Jean King Cup - Tie,Ukraine,Czech Republic,4.44,1.216
-2026-09-27,1637413170,2026-09-27 10:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Niels Visker,Tom Paris,1.6667,2.19
-2026-09-27,1637413171,2026-09-27 10:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Zaccharie Cado,Niels Mcdonald,10.27,1.043
-2026-09-27,1637413172,2026-09-27 12:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Filippo Romano,Kenny De Schepper,1.3937,2.95
-2026-09-27,1637413068,2026-09-27 14:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Matisse Bobichon,Viktor Durasovic,1.7353,2.08
-2026-09-27,1637410986,2026-09-27 16:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Alberto Barroso Campos,Thijs Boogaard,3.95,1.2427
-2026-09-27,1637410987,2026-09-27 16:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Mathys Erhard,Paul Theate,1.018,16.22
-2026-09-27,1637413173,2026-09-27 18:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Constantin Bittoun Kouzmine,Leonardo Rossi,2.24,1.641
-2026-09-27,1637413069,2026-09-27 18:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Yanis Ghazouani Durand,Emile Hudd,1.5,2.57
-2026-09-27,1637413176,2026-09-27 10:05:00+00:00,ATP Challenger Porto - Qualifiers,Alexander Donski,Alejo Sanchez Quilez,3.04,1.3984
-2026-09-27,1637413078,2026-09-27 12:00:00+00:00,ATP Challenger Porto - Qualifiers,Mario Gonzalez Fernandez,Marko Topo,3.49,1.3205
-2026-09-27,1637413177,2026-09-27 12:05:00+00:00,ATP Challenger Porto - Qualifiers,Georgii Kravchenko,Goncalo Marques,1.5814,2.41
-2026-09-27,1637413074,2026-09-27 14:00:00+00:00,ATP Challenger Porto - Qualifiers,Anton Matusevich,Tiago Cacao,1.4032,2.98
-2026-09-27,1637413178,2026-09-27 14:00:00+00:00,ATP Challenger Porto - Qualifiers,Guilherme Valdoleiros,Robin Bertrand,20.42,1.015
-2026-09-27,1637410992,2026-09-27 10:05:00+00:00,ATP Challenger Porto - Qualifiers,Carl Emil Overbeck,Fausto Tabacco,1.5952,2.4
-2026-09-27,1637413076,2026-09-27 16:00:00+00:00,ATP Challenger Porto - Qualifiers,Francisco Rocha,Lui Maxted,3.28,1.3436
-2026-09-27,1637413066,2026-09-27 12:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Jelle Sels,Ryan Peniston,2.3,1.6061
-2026-09-27,1637413077,2026-09-27 16:00:00+00:00,ATP Challenger Porto - Qualifiers,Ivan Marrero Curbelo,Luca Potenza,2.5,1.5435
-2026-09-27,1637413180,2026-09-27 16:00:00+00:00,ATP Challenger Porto - Qualifiers,Michael Geerts,Vladyslav Orlov,1.3846,3.07
-2026-09-27,1637413067,2026-09-27 14:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Manas Dhamne,Maxime Janvier,2.28,1.6211
-2026-09-27,1637406712,2026-09-27 09:00:00+00:00,ITF Women Yecla - Final,Charo Esquiva Banuls,Carmen Gallardo Guevara,1.6173,2.33
-2026-09-27,1637410976,2026-09-27 16:00:00+00:00,ATP Challenger Buenos Aires - Final,Alex Barrena,Facundo Mena,1.9901,1.8621
-2026-09-27,1637413109,2026-09-27 13:05:00+00:00,ATP Challenger Curitiba - Qualifiers,Samuel Heredia,Leonardo Storck Franca,1.5556,2.42
-2026-09-27,1637417541,2026-09-27 13:05:00+00:00,ATP Challenger Curitiba - Qualifiers,Joao Victor Couto Loureiro,Victor Hugo Remondy Pagotto,2.04,1.7692
-2026-09-27,1637413110,2026-09-27 13:05:00+00:00,ATP Challenger Curitiba - Qualifiers,Jefferson Wendler Filho,Juan Sebastian Osorio,5.07,1.158
-2026-09-27,1637413111,2026-09-27 15:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Justin Roberts,Wilson Leite,2.58,1.495
-2026-09-27,1637413112,2026-09-27 17:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Rafael Tosetto,Jose Pereira,2.25,1.6329
-2026-09-27,1637417739,2026-09-27 17:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Gabriel Schenekenberg,Nicolas Zanellato,9.01,1.055
-2026-09-27,1637417542,2026-09-27 19:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Pedro Sakamoto,Joao Vitor Goncalves Ceolin,1.2151,4.26
-2026-09-27,1637417593,2026-09-27 10:00:00+00:00,ATP Challenger Bari - Qualifiers,Kai Wehnelt,Pierluigi Basile,2.95,1.3922
-2026-09-27,1637417594,2026-09-27 10:00:00+00:00,ATP Challenger Bari - Qualifiers,Franco Agamenone,Ignacio Parisca,1.4785,2.63
-2026-09-27,1637417793,2026-09-27 10:00:00+00:00,ATP Challenger Bari - Qualifiers,Federico Arnaboldi,Federico Iannaccone,1.8333,1.9524
-2026-09-27,1637417791,2026-09-27 12:00:00+00:00,ATP Challenger Bari - Qualifiers,Luis Carlos Alvarez,Svyatoslav Gulin,2.82,1.4237
-2026-09-27,1637417682,2026-09-27 12:00:00+00:00,ATP Challenger Bari - Qualifiers,John Sperle,Giuseppe La Vela,1.8065,1.9901
-2026-09-27,1637417792,2026-09-27 12:00:00+00:00,ATP Challenger Bari - Qualifiers,Filippo Francesco Garbero,Dimitris Sakellaridis,8.17,1.065
-2026-09-27,1637417684,2026-09-27 14:00:00+00:00,ATP Challenger Bari - Qualifiers,Francesco Giuseppe Colasanto,Fabrizio Andaloro,15.42,1.02
-2026-09-27,1637417790,2026-09-27 14:00:00+00:00,ATP Challenger Bari - Qualifiers,Matthew William Donald,Carles Cordoba,1.3106,3.39
-2026-09-27,1637417568,2026-09-27 18:00:00+00:00,ATP Challenger San Diego - Final,Nishesh Basavareddy,Igor Marcondes,1.1812,5.22
-2026-09-27,1637417579,2026-09-27 14:05:00+00:00,ATP Challenger Columbus - Qualifiers,Luca Staeheli,Bruno Kuzuhara,1.7874,2.01
-2026-09-27,1637417666,2026-09-27 16:00:00+00:00,ATP Challenger Columbus - Qualifiers,Keaton Hance,Michael Antonius,2.75,1.4425
-2026-09-27,1637417778,2026-09-27 18:00:00+00:00,ATP Challenger Columbus - Qualifiers,Matthew Forbes,Alex Rybakov,2.2,1.6623
-2026-09-27,1637417581,2026-09-27 20:00:00+00:00,ATP Challenger Columbus - Qualifiers,James Trotter,Alexander Okonkwo,1.1799,4.78
-2026-09-28,1637417669,2026-09-27 22:00:00+00:00,ATP Challenger Columbus - Qualifiers,Ilija Palavestra,Daniil Ostapenkov,3.67,1.274
-2026-09-28,1637417780,2026-09-28 00:00:00+00:00,ATP Challenger Columbus - Qualifiers,Noah Zamora,Kaylan Bigun,2.29,1.6135
-2026-09-28,1637417779,2026-09-28 00:00:00+00:00,ATP Challenger Columbus - Qualifiers,Alafia Ayeni,Michael Bassem Sobhy,1.2681,3.72
-2026-09-27,1637417665,2026-09-27 14:05:00+00:00,ATP Challenger Columbus - Qualifiers,Ryan Colby,Shunsuke Mitsui,3.1,1.361
-2026-09-28,1637417582,2026-09-27 22:00:00+00:00,ATP Challenger Columbus - Qualifiers,Quinn Vandecasteele,Preston Stearns,1.4545,2.71
-2026-09-27,1637417668,2026-09-27 20:00:00+00:00,ATP Challenger Columbus - Qualifiers,Nicolas Oliveira,Li Tu,3.0,1.3817
-2026-09-27,1637262848,2026-09-27 11:00:00+00:00,ATP Laver Cup,Europe,World,1.3436,3.45
-2026-09-27,1637417556,2026-09-27 12:45:00+00:00,ATP Laver Cup,Alexander Zverev,Learner Tien,1.3831,3.17
-2026-09-27,1637417647,2026-09-27 14:00:00+00:00,ATP Laver Cup,Carlos Alcaraz,Alex De Minaur,1.135,6.22
-2026-09-27,1637417754,2026-09-27 15:30:00+00:00,ATP Laver Cup,Rafael Jodar,Taylor Fritz,2.19,1.7194
-2026-09-27,1637388042,2026-09-27 12:30:00+00:00,WTA 125K Adana - Qualifiers,Viktoria Hruncakova,Anastasia Tikhonova,1.6061,2.38
 2026-09-27,1637386918,2026-09-27 13:30:00+00:00,WTA 125K Adana - Qualifiers,Erika Andreeva,Elena Micic,1.5181,2.6
-2026-09-27,1637388043,2026-09-27 14:30:00+00:00,WTA 125K Adana - Qualifiers,Fiona Crawley,Lois Boisson,2.62,1.5
-2026-09-27,1637417580,2026-09-27 16:00:00+00:00,ATP Challenger Columbus - Qualifiers,Andres Martin,Oliver Okonkwo,1.266,3.73
+2026-09-27,1637388043,2026-09-27 14:30:00+00:00,WTA 125K Adana - Qualifiers,Fiona Crawley,Lois Boisson,2.66,1.4975
+2026-09-27,1637402882,2026-09-27 14:30:00+00:00,ATP Challenger Genoa - Final,Luka Mikrut,Carlo Alberto Caniato,1.5814,2.49
+2026-09-27,1637402908,2026-09-27 13:00:00+00:00,ITF Women Belem - Final,Paola Lopez,Leticia Garcia Vidal,1.7634,2.08
+2026-09-27,1637406695,2026-09-27 12:35:00+00:00,ATP Hangzhou - QF,Daniil Medvedev,Chak Lam Coleman Wong,1.237,4.63
+2026-09-27,1637407126,2026-09-27 12:30:00+00:00,ATP Challenger St Tropez - Final,Titouan Droguet,Harold Mayot,1.6329,2.4
+2026-09-27,1637407150,2026-09-27 14:00:00+00:00,WTA 125k Tolentino - Final,Guiomar Maristany Zuleta De Reales,Julia Grabher,1.8475,2.03
+2026-09-27,1637410976,2026-09-27 16:00:00+00:00,ATP Challenger Buenos Aires - Final,Alex Barrena,Facundo Mena,1.9901,1.8621
+2026-09-27,1637410986,2026-09-27 16:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Alberto Barroso Campos,Thijs Boogaard,4.05,1.2331
+2026-09-27,1637410987,2026-09-27 16:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Mathys Erhard,Paul Theate,1.018,16.22
+2026-09-27,1637413021,2026-09-27 16:00:00+00:00,ITF Men Columbia - Final,Oliver Bonding,Sean Daryabeigi,1.3413,3.3
+2026-09-27,1637413067,2026-09-27 14:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Manas Dhamne,Maxime Janvier,2.19,1.6667
+2026-09-27,1637413068,2026-09-27 14:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Matisse Bobichon,Viktor Durasovic,1.8475,1.9346
+2026-09-27,1637413069,2026-09-27 18:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Yanis Ghazouani Durand,Emile Hudd,1.4926,2.59
+2026-09-27,1637413074,2026-09-27 14:00:00+00:00,ATP Challenger Porto - Qualifiers,Anton Matusevich,Tiago Cacao,1.4098,2.99
+2026-09-27,1637413076,2026-09-27 16:00:00+00:00,ATP Challenger Porto - Qualifiers,Francisco Rocha,Lui Maxted,3.43,1.3205
+2026-09-27,1637413077,2026-09-27 16:00:00+00:00,ATP Challenger Porto - Qualifiers,Ivan Marrero Curbelo,Luca Potenza,2.5,1.5435
+2026-09-27,1637413078,2026-09-27 12:53:00+00:00,ATP Challenger Porto - Qualifiers,Mario Gonzalez Fernandez,Marko Topo,3.24,1.361
+2026-09-27,1637413109,2026-09-27 13:05:00+00:00,ATP Challenger Curitiba - Qualifiers,Samuel Heredia,Leonardo Storck Franca,1.5682,2.39
+2026-09-27,1637413110,2026-09-27 13:05:00+00:00,ATP Challenger Curitiba - Qualifiers,Jefferson Wendler Filho,Juan Sebastian Osorio,5.02,1.16
+2026-09-27,1637413111,2026-09-27 15:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Justin Roberts,Wilson Leite,2.6,1.4878
+2026-09-27,1637413112,2026-09-27 17:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Rafael Tosetto,Jose Pereira,2.06,1.7576
+2026-09-27,1637413167,2026-09-27 14:00:00+00:00,ITF Men Curitiba - Final,Mateus Alves,Pedro Sakamoto,1.3546,3.22
+2026-09-27,1637413173,2026-09-27 18:00:00+00:00,ATP Challenger Mouilleron-Le-Captif - Qualifiers,Constantin Bittoun Kouzmine,Leonardo Rossi,2.24,1.641
+2026-09-27,1637413178,2026-09-27 14:00:00+00:00,ATP Challenger Porto - Qualifiers,Guilherme Valdoleiros,Robin Bertrand,22.56,1.014
+2026-09-27,1637413180,2026-09-27 16:00:00+00:00,ATP Challenger Porto - Qualifiers,Michael Geerts,Vladyslav Orlov,1.3846,3.07
+2026-09-27,1637417541,2026-09-27 13:05:00+00:00,ATP Challenger Curitiba - Qualifiers,Joao Victor Couto Loureiro,Victor Hugo Remondy Pagotto,2.01,1.7874
+2026-09-27,1637417542,2026-09-27 19:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Pedro Sakamoto,Joao Vitor Goncalves Ceolin,1.2151,4.26
+2026-09-27,1637417556,2026-09-27 12:45:00+00:00,ATP Laver Cup,Alexander Zverev,Learner Tien,1.3521,3.34
+2026-09-27,1637417568,2026-09-27 18:00:00+00:00,ATP Challenger San Diego - Final,Nishesh Basavareddy,Igor Marcondes,1.1812,5.22
+2026-09-27,1637417579,2026-09-27 14:05:00+00:00,ATP Challenger Columbus - Qualifiers,Luca Staeheli,Bruno Kuzuhara,1.8,2.0
+2026-09-27,1637417580,2026-09-27 16:00:00+00:00,ATP Challenger Columbus - Qualifiers,Andres Martin,Oliver Okonkwo,1.2809,3.61
+2026-09-27,1637417581,2026-09-27 20:00:00+00:00,ATP Challenger Columbus - Qualifiers,James Trotter,Alexander Okonkwo,1.1842,4.7
+2026-09-28,1637417582,2026-09-27 22:00:00+00:00,ATP Challenger Columbus - Qualifiers,Quinn Vandecasteele,Preston Stearns,1.4926,2.59
+2026-09-27,1637417647,2026-09-27 14:00:00+00:00,ATP Laver Cup,Carlos Alcaraz,Alex De Minaur,1.2469,4.22
+2026-09-27,1637417665,2026-09-27 14:05:00+00:00,ATP Challenger Columbus - Qualifiers,Ryan Colby,Shunsuke Mitsui,3.1,1.361
+2026-09-27,1637417666,2026-09-27 16:00:00+00:00,ATP Challenger Columbus - Qualifiers,Keaton Hance,Michael Antonius,2.75,1.4425
+2026-09-27,1637417667,2026-09-27 18:00:00+00:00,ATP Challenger Columbus - Qualifiers,Duncan Chan,Denis Petak,1.177,4.83
+2026-09-27,1637417668,2026-09-27 20:00:00+00:00,ATP Challenger Columbus - Qualifiers,Nicolas Oliveira,Li Tu,3.0,1.3817
+2026-09-28,1637417669,2026-09-27 22:00:00+00:00,ATP Challenger Columbus - Qualifiers,Ilija Palavestra,Daniil Ostapenkov,3.67,1.274
+2026-09-27,1637417684,2026-09-27 15:00:00+00:00,ATP Challenger Bari - Qualifiers,Francesco Giuseppe Colasanto,Fabrizio Andaloro,15.42,1.02
+2026-09-27,1637417739,2026-09-27 17:00:00+00:00,ATP Challenger Curitiba - Qualifiers,Gabriel Schenekenberg,Nicolas Zanellato,9.01,1.055
+2026-09-27,1637417754,2026-09-27 15:30:00+00:00,ATP Laver Cup,Rafael Jodar,Taylor Fritz,2.13,1.7576
+2026-09-27,1637417778,2026-09-27 18:00:00+00:00,ATP Challenger Columbus - Qualifiers,Matthew Forbes,Alex Rybakov,2.17,1.6803
+2026-09-28,1637417779,2026-09-28 00:00:00+00:00,ATP Challenger Columbus - Qualifiers,Alafia Ayeni,Michael Bassem Sobhy,1.2681,3.72
+2026-09-28,1637417780,2026-09-28 00:00:00+00:00,ATP Challenger Columbus - Qualifiers,Noah Zamora,Kaylan Bigun,2.29,1.6135
+2026-09-27,1637417790,2026-09-27 14:00:00+00:00,ATP Challenger Bari - Qualifiers,Matthew William Donald,Carles Cordoba,1.3106,3.39
+2026-09-27,1637417791,2026-09-27 13:00:00+00:00,ATP Challenger Bari - Qualifiers,Luis Carlos Alvarez,Svyatoslav Gulin,2.79,1.431
+2026-09-27,1637417792,2026-09-27 13:00:00+00:00,ATP Challenger Bari - Qualifiers,Filippo Francesco Garbero,Dimitris Sakellaridis,12.74,1.029
