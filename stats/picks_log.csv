@@ -61,9 +61,28 @@ date,tournament,player1,player2,recommended_player,opponent,edge_pp,rec_odds,com
 2026-10-05,,Lara Schmidt,Viktoria Veleva,Viktoria Veleva,Lara Schmidt,31.400000000000002,2.35,70.2,10.5,1.68,3340599.0,lost,2:0,2026-10-06
 2026-10-05,,Patrick Schoen,Filip Misolic,Patrick Schoen,Filip Misolic,28.700000000000003,2.32,68.0,10.5,1.62,3340417.0,won,2:0,2026-10-06
 2026-10-05,,Hugo Grenier,Georgii Kravchenko,Georgii Kravchenko,Hugo Grenier,18.5,2.5,55.0,10.5,1.66,3340413.0,won,2:0,2026-10-06
-2026-10-06,,Quadre Barakat,Anastasia Bertacchi,Quadre Barakat,Anastasia Bertacchi,19.6,2.17,61.7,10.5,1.59,3341493.0,pending,,
-2026-10-06,,Barakat Oyinlomo Quadre,Anastasia Bertacchi,Barakat Oyinlomo Quadre,Anastasia Bertacchi,17.0,2.05,61.7,10.5,1.54,3341493.0,pending,,
-2026-10-06,,Guido Ivan Justo,Francisco Comesana,Guido Ivan Justo,Francisco Comesana,25.0,2.6,60.8,9.5,1.63,3340035.0,pending,,
-2026-10-06,,Pierre Antoine Tailleu,Mae Malige,Pierre Antoine Tailleu,Mae Malige,34.900000000000006,3.5,60.7,7.5,1.59,3342211.0,pending,,
-2026-10-06,,Miguel Tobon,Thiago Cigarran,Thiago Cigarran,Miguel Tobon,33.3,3.75,58.0,6.5,1.44,3342387.0,pending,,
-2026-10-06,,Yiru Chen,Meiling Wang,Yiru Chen,Meiling Wang,37.7,4.55,57.6,6.5,1.69,3341461.0,pending,,
+2026-10-06,,Quadre Barakat,Anastasia Bertacchi,Quadre Barakat,Anastasia Bertacchi,19.6,2.17,61.7,10.5,1.59,3341493.0,lost,2:0,2026-10-07
+2026-10-06,,Barakat Oyinlomo Quadre,Anastasia Bertacchi,Barakat Oyinlomo Quadre,Anastasia Bertacchi,17.0,2.05,61.7,10.5,1.54,3341493.0,lost,2:0,2026-10-07
+2026-10-06,,Guido Ivan Justo,Francisco Comesana,Guido Ivan Justo,Francisco Comesana,25.0,2.6,60.8,9.5,1.63,3340035.0,won,2:1,2026-10-07
+2026-10-06,,Pierre Antoine Tailleu,Mae Malige,Pierre Antoine Tailleu,Mae Malige,34.900000000000006,3.5,60.7,7.5,1.59,3342211.0,lost,2:1,2026-10-07
+2026-10-06,,Miguel Tobon,Thiago Cigarran,Thiago Cigarran,Miguel Tobon,33.3,3.75,58.0,6.5,1.44,3342387.0,lost,2:1,2026-10-07
+2026-10-06,,Yiru Chen,Meiling Wang,Yiru Chen,Meiling Wang,37.7,4.55,57.6,6.5,1.69,3341461.0,won,1:0,2026-10-07
+2026-10-07,,Holger Rune,Daniel Altmaier,Daniel Altmaier,Holger Rune,32.3,2.75,66.5,9.5,1.52,3341221.0,pending,,
+2026-10-07,,Ksenia Efremova,Sophia Biolay,Sophia Biolay,Ksenia Efremova,30.9,2.7,64.6,9.5,1.73,3341489.0,pending,,
+2026-10-07,,Mingge Xu,Aspen Schuman,Aspen Schuman,Mingge Xu,36.199999999999996,3.4,62.9,7.5,1.65,3342291.0,pending,,
+2026-10-07,,Gabriele Pennaforti,Ruben Hartig,Ruben Hartig,Gabriele Pennaforti,34.8,3.35,61.8,7.5,1.6,3342999.0,pending,,
+2026-10-07,,Alessandro Mondazzi,Kaan Isik Kosaner,Alessandro Mondazzi,Kaan Isik Kosaner,24.299999999999997,2.45,61.5,10.5,1.7,3343143.0,pending,,
+2026-10-07,,Noah Schachter,Allan Gatoto,Allan Gatoto,Noah Schachter,25.199999999999996,2.57,60.6,10.5,1.76,3341663.0,pending,,
+2026-10-07,,Nikolas Baker,Stefan Vujic,Nikolas Baker,Stefan Vujic,32.099999999999994,3.2,60.4,8.5,1.62,3342969.0,pending,,
+2026-10-07,,Manuel Mazza,Ivan Ivanov,Manuel Mazza,Ivan Ivanov,21.6,2.42,59.2,10.5,1.7,3343009.0,pending,,
+2026-10-07,,Aleksandr Braynin,Hugo Cardinaud,Hugo Cardinaud,Aleksandr Braynin,37.7,4.4,58.3,6.5,1.55,3343159.0,pending,,
+2026-10-07,,Josy Daems,Miriam Bianca Bulgaru,Josy Daems,Miriam Bianca Bulgaru,20.6,2.42,58.2,10.5,1.71,3342799.0,pending,,
+2026-10-07,,Joshua Charlton,Arjun Mehrotra,Arjun Mehrotra,Joshua Charlton,30.5,3.3,58.0,8.5,1.71,3342971.0,pending,,
+2026-10-07,,Pavlos Tsitsipas,Nicholas Campbell,Nicholas Campbell,Pavlos Tsitsipas,15.699999999999996,2.17,57.8,10.5,1.56,3342983.0,pending,,
+2026-10-07,,Tsung-Hao Huang,Ko Suzuki,Ko Suzuki,Tsung-Hao Huang,29.700000000000003,3.3,57.2,8.5,1.75,3342785.0,pending,,
+2026-10-07,,Victor Barreira Bonzom,Yannick Baluska,Yannick Baluska,Victor Barreira Bonzom,18.0,2.35,57.0,10.5,1.62,3343161.0,pending,,
+2026-10-07,,Laia Petretic,Maria Martinez Vaquero,Laia Petretic,Maria Martinez Vaquero,29.5,3.35,56.5,7.5,1.64,3342263.0,pending,,
+2026-10-07,,Deborah Chiesa,Luisa Meyer Auf Der Heide,Luisa Meyer Auf Der Heide,Deborah Chiesa,36.300000000000004,4.6,55.9,6.5,1.7,3343031.0,pending,,
+2026-10-07,,Thomas Kostka,Marcus Walters,Thomas Kostka,Marcus Walters,35.699999999999996,4.5,55.8,6.5,1.64,3342981.0,pending,,
+2026-10-07,,Wihan van der Merwe,Adrian Arcon,Adrian Arcon,Wihan van der Merwe,23.4,2.87,55.1,9.5,1.73,3342961.0,pending,,
+2026-10-07,,Loann Massard,Rahul Dhokia,Rahul Dhokia,Loann Massard,36.2,4.8,55.0,6.5,1.62,3343145.0,pending,,
