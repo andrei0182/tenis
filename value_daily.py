@@ -14,6 +14,7 @@ import logging
 import pandas as pd
 
 from tenis.daily import report_html, run_range, weekly_html
+from tenis.pinnacle import PinnapiUnavailable
 from tenis.staking import StakingConfig
 from tenis.value import load_superbet_tennis, superbet_frame
 
@@ -58,8 +59,12 @@ def main() -> None:
             superbet = {args.date: load_superbet_tennis(args.superbet_xlsx, args.date)}
         else:
             superbet = {d.isoformat(): fetch_superbet(d) for d in dates}
-        results = run_range(superbet, args.state_dir, StakingConfig(ev_min=args.ev_min, bankroll=args.bankroll),
-                            args.ev_min)
+        try:
+            results = run_range(superbet, args.state_dir,
+                                StakingConfig(ev_min=args.ev_min, bankroll=args.bankroll), args.ev_min)
+        except PinnapiUnavailable as exc:
+            print(f"::warning::Raport value bets sărit, pinnapi indisponibil: {exc}")
+            return
         for d, r in results.items():
             print(f"{d}: {r.compared} comparate, {len(r.unmatched)} nepotrivite, {len(r.bets)} pariuri")
         subject, body = report_html(results)

@@ -11,6 +11,11 @@ permissions:
 on:
   schedule:
     - cron: "45 */2 * * *"
+    # Extra runs before the evening matches (GitHub often delays or drops scheduled runs, leaving
+    # bets without a snapshot taken after them). ~17:20, 19:20 and 21:20 Romania time (summer).
+    - cron: "20 14 * * *"
+    - cron: "20 16 * * *"
+    - cron: "20 18 * * *"
   workflow_dispatch: {}
 
 concurrency:
@@ -53,7 +58,7 @@ jobs:
 
       - name: Snapshot Pinnacle tennis odds
         if: env.PINNAPI_KEY != ''
-        run: python -c "from tenis.pinnacle import snapshot; df = snapshot('state/sharp.csv', 'state/pinnacle_snapshots.csv'); print(len(df), 'meciuri')"
+        run: python -m tenis.pinnacle
 
       - name: Commit state
         if: env.PINNAPI_KEY != ''
