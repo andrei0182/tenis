@@ -19,7 +19,7 @@ from .staking import StakingConfig, stake_size
 
 KEY = ["date", "player", "opponent"]
 LOG_COLUMNS = ["date", "tournament", "player", "opponent", "event_id", "odds", "fair_p", "fair_odds", "ev", "stake",
-               "kickoff"]
+               "kickoff", "logged_at"]
 LOCAL_TZ = "Europe/Bucharest"
 
 
@@ -127,7 +127,7 @@ def find_value(pairs: pd.DataFrame, staking: StakingConfig, ev_min: float = 0.02
                 out.append({"date": r.date, "tournament": r.tournament, "player": player, "opponent": opponent,
                             "event_id": r.event_id, "odds": odds, "fair_p": fair[k], "fair_odds": 1 / fair[k], "ev": ev,
                             "stake": float(stake_size(fair[k], odds, staking.bankroll, staking)),
-                            "kickoff": getattr(r, "kickoff", "")})
+                            "kickoff": getattr(r, "kickoff", ""), "logged_at": None})
     return pd.DataFrame(out, columns=LOG_COLUMNS)
 
 
@@ -148,23 +148,55 @@ def append_log(bets: pd.DataFrame, path: str | Path) -> pd.DataFrame:
 
 def settle(log: pd.DataFrame, closing: pd.DataFrame) -> pd.DataFrame:
     """CLV and closing EV for each logged bet from the Pinnacle closing line of the same event."""
-    merged = log.merge(closing[["event_id", "Player1", "PSC1", "PSC2"]], on="event_id", how="left")
+    cols = ["event_id", "Player1", "PSC1", "PSC2"] + (["taken_at"] if "taken_at" in closing else [])
+    merged = log.merge(closing[cols].rename(columns={"taken_at": "close_taken_at"}), on="event_id", how="left")
     is_p1 = (merged["player"] == merged["Player1"]).to_numpy()
     close_odds = np.where(is_p1, merged["PSC1"], merged["PSC2"]).astype(float)
     fair = devig(merged[["PSC1", "PSC2"]].to_numpy(dtype=float), "power") if len(merged) else np.empty((0, 2))
     close_fair = np.where(is_p1, fair[:, 0], fair[:, 1]) if len(merged) else np.empty(0)
     out = merged.drop(columns=["Player1", "PSC1", "PSC2"])
-    out["close_odds"] = close_odds
-    out["clv"] = out["odds"] / close_odds - 1
-    out["ev_close"] = out["odds"] * close_fair - 1
+    status = closing_status(out, close_odds)
+    valid = status == "ok"
+    out["closing_status"] = status
+    out["close_odds"] = np.where(valid, close_odds, np.nan)
+    out["clv"] = out["odds"] / out["close_odds"] - 1
+    out["ev_close"] = np.where(valid, out["odds"] * close_fair - 1, np.nan)
     return out
+
+
+MIN_CLOSING_GAP = pd.Timedelta(minutes=30)
+
+
+def closing_status(settled: pd.DataFrame, close_odds: np.ndarray) -> np.ndarray:
+    """Whether each bet's closing line really came after the bet.
+
+    "ok": a closing price exists and, when timing is known, was taken at least 30 minutes after the bet;
+    "fara_captura_ulterioara": the last pre-start snapshot is the one the bet was found in (no real close);
+    "nemasurat": the bet predates `logged_at` tracking (timing unknown);
+    "fara_inchidere": no closing price at all. Closing lines without snapshot times count as "ok".
+    """
+    has_close = np.isfinite(close_odds)
+    status = np.where(has_close, "ok", "fara_inchidere").astype(object)
+    if "close_taken_at" not in settled:
+        return status
+    taken = pd.to_datetime(settled["close_taken_at"], utc=True, errors="coerce", format="mixed")
+    logged = (pd.to_datetime(settled["logged_at"], utc=True, errors="coerce", format="mixed")
+              if "logged_at" in settled else pd.Series(pd.NaT, index=settled.index))
+    unknown = has_close & logged.isna().to_numpy()
+    too_early = has_close & ~unknown & (taken < logged + MIN_CLOSING_GAP).to_numpy()
+    status[unknown] = "nemasurat"
+    status[too_early] = "fara_captura_ulterioara"
+    return status
 
 
 def summarize(settled: pd.DataFrame) -> dict:
     """Closing EV (the edge estimate), CLV and counts."""
     ev = settled["ev_close"].dropna()
     clv = settled["clv"].dropna()
-    return {"bets": int(len(settled)), "with_closing_odds": int(len(ev)),
+    status = settled["closing_status"] if "closing_status" in settled else pd.Series(dtype=object)
+    return {"excluded_no_later_snapshot": int((status == "fara_captura_ulterioara").sum()),
+            "excluded_unmeasured": int((status == "nemasurat").sum()),
+            "bets": int(len(settled)), "with_closing_odds": int(len(ev)),
             "ev_close_mean": float(ev.mean()) if len(ev) else None,
             "ev_close_se": float(ev.std(ddof=1) / np.sqrt(len(ev))) if len(ev) > 1 else None,
             "clv_mean": float(clv.mean()) if len(clv) else None,

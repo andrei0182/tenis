@@ -31,13 +31,13 @@ def run_range(superbet: dict[str, pd.DataFrame], state_dir: str | Path, staking:
               ev_min: float = 0.02, max_odds: float = 8.0, payload: dict | None = None) -> dict[str, DayResult]:
     """One Pinnacle snapshot covering every date, then Superbet vs Pinnacle for each date."""
     state = Path(state_dir)
-    today = pd.Timestamp.now(tz="UTC").tz_localize(None).normalize()
-    days = max(3, (pd.Timestamp(max(superbet)) - today).days + 2)
-    sharp = snapshot(state / "sharp.csv", state / "pinnacle_snapshots.csv", days=days, payload=payload)
+    now = pd.Timestamp.now(tz="UTC")
+    days = max(3, (pd.Timestamp(max(superbet)) - now.tz_localize(None).normalize()).days + 2)
+    sharp = snapshot(state / "sharp.csv", state / "pinnacle_snapshots.csv", days=days, now=now, payload=payload)
     out = {}
     for date, sb in sorted(superbet.items()):
         pairs, unmatched = join_sources(sharp, sb)
-        bets = find_value(pairs, staking, ev_min, max_odds)
+        bets = find_value(pairs, staking, ev_min, max_odds).assign(logged_at=now.isoformat())
         if not bets.empty:
             append_log(bets, state / "value_log.csv")
         record_day(state, date, len(pairs), len(unmatched), len(bets))
@@ -72,14 +72,28 @@ def _pct(v: float | None) -> str:
     return "-" if v is None else f"{v * 100:.1f}%"
 
 
+def excluded_note(s: dict) -> str:
+    """Bets left out of the closing-line record because their close could not be measured honestly."""
+    late, old = s.get("excluded_no_later_snapshot", 0), s.get("excluded_unmeasured", 0)
+    if not late and not old:
+        return ""
+    bits = []
+    if late:
+        bits.append(f"{late} fără nicio captură Pinnacle după pariu")
+    if old:
+        bits.append(f"{old} vechi, dinainte de înregistrarea orei pariului")
+    return (f"<p style='color:#888; font-size:0.9em;'>Excluse din bilanț ({', '.join(bits)}): pentru ele "
+            "linia de închidere nu se poate măsura corect.</p>")
+
+
 def _record_html(s: dict, title: str) -> str:
     """Closing-line record block; empty until at least one bet has a closing line."""
     if not s or not s.get("with_closing_odds"):
-        return ""
+        return excluded_note(s) if s else ""
     verdict = "clar pozitiv" if s["ev_close_se"] and s["ev_close_mean"] / s["ev_close_se"] > 2 else "încă neconcludent"
     return (f"<h3>{title}: {s['bets']} pariuri ({s['with_closing_odds']} cu linie de închidere)</h3>"
             f"<p>EV la închidere: <b>{_pct(s['ev_close_mean'])}</b> &plusmn; {_pct(s['ev_close_se'])} ({verdict}). "
-            f"Pariuri cu CLV pozitiv: {_pct(s['clv_positive_share'])}.</p>")
+            f"Pariuri cu CLV pozitiv: {_pct(s['clv_positive_share'])}.</p>" + excluded_note(s))
 
 
 def _bets_table(bets: pd.DataFrame, with_date: bool, closing: bool = False) -> str:

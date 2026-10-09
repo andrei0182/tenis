@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -27,12 +28,26 @@ def api_key() -> str:
     return key
 
 
+class PinnapiUnavailable(RuntimeError):
+    """pinnapi refused the key (suspended/expired account, quota): nothing to do until the account is fixed."""
+
+
 def fetch_prematch(key: str, sport_id: int = TENNIS, timeout: int = 60) -> dict:
     """One REST call: every prematch tennis event (1 of the free tier's 100 requests/day)."""
     req = urllib.request.Request(f"{BASE_URL}/markets?sport_id={sport_id}&event_type=prematch",
                                  headers={"x-portal-apikey": key, "User-Agent": "tenis-value/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.load(resp)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.load(resp)
+    except urllib.error.HTTPError as exc:
+        if exc.code not in (401, 402, 403, 429):
+            raise
+        try:
+            body = json.loads(exc.read().decode() or "{}")
+        except ValueError:
+            body = {}
+        raise PinnapiUnavailable(
+            f"pinnapi HTTP {exc.code} {body.get('error', '')}: {body.get('message', '')}".strip()) from exc
 
 
 def is_doubles(name: str) -> bool:
@@ -101,3 +116,17 @@ def closing_lines(history: str | Path) -> pd.DataFrame:
     h = h[h["taken_at"] < h["starts"]].sort_values("taken_at")
     last = h.groupby("event_id", as_index=False).last().rename(columns={"PS1": "PSC1", "PS2": "PSC2"})
     return last[["event_id", "Date", "League", "Player1", "Player2", "starts", "taken_at", "PSC1", "PSC2"]]
+
+
+def main() -> None:
+    """Scheduled snapshot into state/; a refused key is a warning, not a failed run."""
+    try:
+        df = snapshot("state/sharp.csv", "state/pinnacle_snapshots.csv")
+    except PinnapiUnavailable as exc:
+        print(f"::warning::Captura Pinnacle sărită: {exc}")
+        return
+    print(len(df), "meciuri")
+
+
+if __name__ == "__main__":
+    main()

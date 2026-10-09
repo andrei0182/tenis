@@ -115,3 +115,64 @@ def test_api_key_required(monkeypatch):
     monkeypatch.delenv("PINNAPI_KEY", raising=False)
     with pytest.raises(RuntimeError):
         api_key()
+
+
+def test_fetch_prematch_raises_unavailable_on_suspended_account(monkeypatch):
+    import io
+    import urllib.error
+
+    from tenis.pinnacle import PinnapiUnavailable, fetch_prematch
+
+    def refuse(req, timeout=0):
+        body = io.BytesIO(b'{"error":"account_suspended","message":"This account is suspended"}')
+        raise urllib.error.HTTPError(req.full_url, 403, "Forbidden", {}, body)
+
+    monkeypatch.setattr("urllib.request.urlopen", refuse)
+    with pytest.raises(PinnapiUnavailable, match="account_suspended"):
+        fetch_prematch("key")
+
+
+def test_snapshot_main_warns_instead_of_failing(monkeypatch, capsys):
+    from tenis import pinnacle
+
+    def refuse(*a, **k):
+        raise pinnacle.PinnapiUnavailable("pinnapi HTTP 403 account_suspended")
+
+    monkeypatch.setattr(pinnacle, "snapshot", refuse)
+    pinnacle.main()
+    assert "::warning::" in capsys.readouterr().out
+
+
+def test_closing_status_requires_a_snapshot_after_the_bet():
+    from tenis.value import closing_status
+
+    df = pd.DataFrame({"logged_at": ["2026-09-26T11:00:00+00:00", "2026-09-26T11:00:00+00:00", None, None],
+                       "close_taken_at": ["2026-09-26T11:00:00+00:00", "2026-09-26T15:00:00+00:00",
+                                          "2026-09-26T15:00:00+00:00", None]})
+    assert closing_status(df, np.array([2.0, 2.0, 2.0, np.nan])).tolist() == [
+        "fara_captura_ulterioara", "ok", "nemasurat", "fara_inchidere"]
+
+
+def test_same_snapshot_close_is_excluded_from_record(tmp_path, monkeypatch):
+    monkeypatch.setattr("tenis.pinnacle.pd.Timestamp.now", lambda tz=None: NOW)
+    res = run_range({"2026-09-24": _superbet()}, tmp_path, StakingConfig(), payload=_payload(2.29))
+    s = res["2026-09-24"].summary
+    assert s["with_closing_odds"] == 0 and s["excluded_no_later_snapshot"] == 1
+    html = report_html(res)[1]
+    assert "Bilanț" not in html and "Excluse din bilanț (1 fără nicio captură" in html
+
+
+def test_value_daily_skips_cleanly_when_pinnapi_refuses(monkeypatch, capsys, tmp_path):
+    import sys
+
+    import value_daily
+    from tenis.pinnacle import PinnapiUnavailable
+
+    def refuse(*a, **k):
+        raise PinnapiUnavailable("pinnapi HTTP 403 account_suspended")
+
+    monkeypatch.setattr(value_daily, "run_range", refuse)
+    monkeypatch.setattr(value_daily, "fetch_superbet", lambda d: _superbet(d.isoformat()))
+    monkeypatch.setattr(sys, "argv", ["value_daily.py", "--date", "2026-10-09", "--state-dir", str(tmp_path)])
+    value_daily.main()  # returns before importing send_report_email
+    assert "::warning::" in capsys.readouterr().out
