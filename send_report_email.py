@@ -38,6 +38,19 @@ MIN_EDGE_PP = 15.0
 MIN_ODDS = 1.0005
 MIN_COMPOSITE_PCT = 55.0
 
+# Filtru de valoare peste cele de mai sus (2026-10-11, vezi docs/analiza_favorit_outsider.md):
+# pe 90 de recomandari estimarea compusa a dat in medie 62%, castigul real a fost 38%, cat spunea
+# deja cota (36%). Estimarea se trage deci spre piata: P = P_piata + SHRINK * (P_compusa - P_piata),
+# cu P_piata din cotele Superbet fara marja, metoda "power" (corecteaza partial efectul favorit-outsider).
+# SHRINK estimat prin verosimilitate maxima pe cele 90 de recomandari: 0.23, interval 95% 0.01-0.51
+# (esantion mic) -> 0.2. De reestimat cand tabelul de calibrare din email are cateva sute de pariuri.
+# Pe 80.000 de meciuri ATP/WTA, outsiderii cu cota >= 3.00 pierd ~11-35% la o casa soft, deci li se
+# cere EV mai mare.
+SHRINK = 0.2
+MIN_EV = 0.05
+LONGSHOT_ODDS = 3.0
+MIN_EV_LONGSHOT = 0.15
+
 _COL_P1, _COL_P2 = "Jucător 1", "Jucător 2"
 _COL_ODDS1, _COL_ODDS2 = "Cotă 1", "Cotă 2"
 _COL_COMP1, _COL_COMP2 = "% Estimare Compusă J1 (rank+formă+rating)", "% Estimare Compusă J2 (rank+formă+rating)"
@@ -54,8 +67,41 @@ PICKS_LOG_PATH = Path("stats") / "picks_log.csv"
 PICKS_LOG_COLUMNS = [
     "date", "tournament", "player1", "player2", "recommended_player", "opponent",
     "edge_pp", "rec_odds", "comp_pct", "games_line", "games_odds",
-    "te_match_id", "result", "score", "checked_at",
+    "te_match_id", "result", "score", "checked_at", "adj_pct", "ev",
 ]
+
+
+def power_devig(odds_a: float, odds_b: float) -> float | None:
+    """Probabilitatea fara marja pentru partea A: p_i = (1/o_i)^k, k ales ca p_A + p_B = 1."""
+    try:
+        qa, qb = 1.0 / float(odds_a), 1.0 / float(odds_b)
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+    if not (0 < qa < 1 and 0 < qb < 1):
+        return None
+    if qa + qb <= 1.0:
+        return qa / (qa + qb)
+    lo, hi = 1.0, 50.0  # suma scade cu k; la k=1 e > 1
+    for _ in range(100):
+        k = (lo + hi) / 2
+        if qa ** k + qb ** k > 1.0:
+            lo = k
+        else:
+            hi = k
+    return qa ** k
+
+
+def value_check(comp_pct: float, odds: float, odds_other: float, shrink: float = SHRINK) -> tuple[float, float] | None:
+    """(probabilitate ajustata spre piata in %, EV) pentru partea recomandata, sau None fara cote valide."""
+    market = power_devig(odds, odds_other)
+    if market is None or pd.isna(comp_pct):
+        return None
+    p = market + shrink * (float(comp_pct) / 100.0 - market)
+    return p * 100.0, p * float(odds) - 1.0
+
+
+def passes_value(ev: float, odds: float) -> bool:
+    return ev >= (MIN_EV_LONGSHOT if odds >= LONGSHOT_ODDS else MIN_EV)
 
 
 def filter_recommended_picks(
@@ -63,6 +109,7 @@ def filter_recommended_picks(
     min_edge_pp: float = MIN_EDGE_PP,
     min_odds: float = MIN_ODDS,
     min_composite_pct: float = MIN_COMPOSITE_PCT,
+    value_filter: bool = True,
 ) -> pd.DataFrame:
     """Pentru fiecare meci, calculeaza edge-ul (estimare - implicit) pe
     fiecare parte si pastreaza doar meciurile unde partea cu edge pozitiv
@@ -149,10 +196,20 @@ def filter_recommended_picks(
             new_row["_games_odds"] = games_odds2
             rows.append(new_row)
 
-    if not rows:
+    kept = []
+    for new_row in rows:
+        mine, other = (_COL_ODDS1, _COL_ODDS2) if new_row["_recommended_player"] == 1 else (_COL_ODDS2, _COL_ODDS1)
+        check = value_check(new_row["_comp_pct"], new_row.get(mine), new_row.get(other))
+        if check is None:
+            continue
+        new_row["_adj_pct"], new_row["_ev"] = check
+        if not value_filter or passes_value(new_row["_ev"], new_row["_rec_odds"]):
+            kept.append(new_row)
+
+    if not kept:
         return pd.DataFrame()
-    result = pd.DataFrame(rows)
-    return result.sort_values("_comp_pct", ascending=False)
+    result = pd.DataFrame(kept)
+    return result.sort_values("_ev", ascending=False)
 
 
 def _clean(value) -> str:
@@ -173,8 +230,10 @@ def build_email_body(df: pd.DataFrame, date_str: str) -> str:
         f"<p>Total meciuri analizate: <b>{len(df)}</b>."
         f"Mai jos: doar recomandarile care trec de filtre (edge &ge; {MIN_EDGE_PP:.0f}pp fata de piata, "
         f"cota &ge; {MIN_ODDS:.1f}, estimare proprie &ge; {MIN_COMPOSITE_PCT:.0f}%, "
-        f"cota Peste la o linie de total game-uri disponibila pe jucatorul recomandat), "
-        f"sortate descrescator dupa estimarea noastra.</p>"
+        f"cota Peste la o linie de total game-uri disponibila pe jucatorul recomandat) si filtrul de valoare: "
+        f"estimarea e trasa spre piata (doar {SHRINK:.0%} din diferenta e pastrata), iar EV-ul rezultat trebuie "
+        f"sa fie &ge; {MIN_EV:.0%} (&ge; {MIN_EV_LONGSHOT:.0%} la cote &ge; {LONGSHOT_ODDS:.2f}). "
+        f"Sortate descrescator dupa EV.</p>"
     )
 
     if picks.empty:
@@ -197,13 +256,17 @@ def build_email_body(df: pd.DataFrame, date_str: str) -> str:
             comp_pct = row["_comp_pct"]
             games_line = row["_games_line"]
             games_odds = row["_games_odds"]
+            adj_pct, ev = row["_adj_pct"], row["_ev"]
 
             lines.append("<div style='margin-bottom:16px; padding:10px; border:1px solid #ddd; border-radius:6px;'>")
             lines.append(f"<h3 style='margin:0 0 6px 0;'>{p1} vs {p2}</h3>")
             lines.append(f"<p style='margin:2px 0; color:#555;'>{tournament} — {time_text}</p>")
             lines.append(
-                f"<p style='margin:6px 0;'><b>Recomandare: {rec_name}</b> (cota {rec_odds}, edge +{edge:.0f}pp fata de piata, "
-                f"estimare proprie {comp_pct:.1f}%, Peste {games_line} game-uri @ {games_odds})</p>"
+                f"<p style='margin:6px 0;'><b>Recomandare: {rec_name}</b> (cota {rec_odds}, EV {ev:+.0%}, "
+                f"probabilitate ajustata {adj_pct:.1f}%, Peste {games_line} game-uri @ {games_odds})</p>"
+            )
+            lines.append(
+                f"<p style='margin:6px 0; color:#555;'>Estimare compusa bruta {comp_pct:.1f}% (edge +{edge:.0f}pp fata de piata)</p>"
             )
             lines.append(f"<p style='margin:6px 0;'><b>Cote Superbet:</b> {odds1} / {odds2} (implicit {implied1}% / {implied2}%)</p>")
             lines.append(f"<p style='margin:6px 0;'><b>Estimare noastra:</b> {comp1}% / {comp2}%</p>")
@@ -296,6 +359,8 @@ def log_todays_picks(picks: pd.DataFrame, date_str: str) -> None:
             "result": "pending",
             "score": "",
             "checked_at": "",
+            "adj_pct": round(row["_adj_pct"], 1),
+            "ev": round(row["_ev"], 3),
         })
     if new_rows:
         log = pd.concat([log, pd.DataFrame(new_rows)], ignore_index=True)
@@ -318,6 +383,53 @@ def accuracy_summary_html() -> str:
         "<p style='margin-top:20px; padding-top:10px; border-top:1px solid #ddd; color:#555;'>"
         f"<b>Statistica reala pana acum:</b> din {len(resolved)} recomandari confirmate, "
         f"{(resolved['result'] == 'won').sum()} au fost castigate ({win_rate:.0%}).</p>"
+        + calibration_html(resolved)
+    )
+
+
+ODDS_BANDS = [(1.0, 2.0, "sub 2.00"), (2.0, 2.5, "2.00-2.50"), (2.5, 3.0, "2.50-3.00"),
+              (3.0, 4.0, "3.00-4.00"), (4.0, float("inf"), "peste 4.00")]
+
+
+def calibration_table(resolved: pd.DataFrame) -> pd.DataFrame:
+    """Pe grupe de cota: cat a estimat raportul, cat s-a castigat real, cat spunea cota (1/cota) si profitul
+    la miza 1. Daca estimarea e mult peste castigul real, estimarea e umflata."""
+    d = resolved.copy()
+    d["odds"] = pd.to_numeric(d["rec_odds"], errors="coerce")
+    d["comp"] = pd.to_numeric(d["comp_pct"], errors="coerce")
+    d["won"] = (d["result"] == "won").astype(int)
+    d = d.dropna(subset=["odds", "comp"])
+    d["pl"] = d["won"] * d["odds"] - 1.0
+    rows = []
+    for lo, hi, label in ODDS_BANDS + [(1.0, float("inf"), "TOTAL")]:
+        g = d[(d["odds"] >= lo) & (d["odds"] < hi)]
+        if g.empty:
+            continue
+        se = g["pl"].std(ddof=1) / len(g) ** 0.5 if len(g) > 1 else float("nan")
+        rows.append({"cota": label, "n": len(g), "estimat": g["comp"].mean(), "real": g["won"].mean() * 100,
+                     "cota_implicit": (1 / g["odds"]).mean() * 100, "profit": g["pl"].sum(),
+                     "yield": g["pl"].mean() * 100, "se": se * 100})
+    return pd.DataFrame(rows)
+
+
+def calibration_html(resolved: pd.DataFrame) -> str:
+    t = calibration_table(resolved)
+    if t.empty:
+        return ""
+    cell = "padding:3px 8px; border:1px solid #ddd; text-align:right;"
+    head = "".join(f"<th style='{cell}'>{h}</th>" for h in
+                   ["Cotă", "Pariuri", "Estimat %", "Câștig real %", "Implicit cotă %", "Profit (miză 1)", "Yield %"])
+    body = "".join(
+        f"<tr><td style='{cell}'>{r.cota}</td><td style='{cell}'>{r.n}</td><td style='{cell}'>{r.estimat:.1f}</td>"
+        f"<td style='{cell}'>{r.real:.1f}</td><td style='{cell}'>{r.cota_implicit:.1f}</td>"
+        f"<td style='{cell}'>{r.profit:+.2f}</td><td style='{cell}'>{r.yield_:+.1f} ± {r.se:.1f}</td></tr>"
+        for r in t.rename(columns={"yield": "yield_"}).itertuples()
+    )
+    return (
+        "<p style='color:#555; margin-bottom:4px;'><b>Calibrare</b> (toate recomandarile confirmate): "
+        "dacă „Estimat” e mult peste „Câștig real”, estimarea e umflată; un yield e credibil abia când e "
+        "mai mare decât de ~2 ori marja ± (o eroare standard).</p>"
+        f"<table style='border-collapse:collapse; font-size:0.9em; color:#333;'><tr>{head}</tr>{body}</table>"
     )
 
 

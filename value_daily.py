@@ -38,6 +38,17 @@ def fetch_superbet(date: dt.date, tours: tuple[str, ...] = TOURS) -> pd.DataFram
     return superbet_frame(rows, date.isoformat())
 
 
+def pinnapi_alert(date: str, exc: Exception) -> tuple[str, str]:
+    """Short email when pinnapi refuses: without it there are no value bets, and a silent skip went unnoticed for weeks."""
+    subject = f"Tenis value bets {date}: OPRIT - pinnapi indisponibil"
+    body = (f"<h2>Value bets tenis — {date}: nu au rulat</h2>"
+            f"<p>pinnapi.com (cotele Pinnacle) a refuzat cererea:</p><pre>{exc}</pre>"
+            "<p>Fără cotele Pinnacle nu se pot calcula pariuri cu valoare și nici linia de închidere. "
+            "Dacă eroarea e <code>account_suspended</code>, contul trebuie reactivat (suport pinnapi pe Telegram) "
+            "sau secretul <code>PINNAPI_KEY</code> înlocuit.</p>")
+    return subject, body
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--date", required=True, help="YYYY-MM-DD (first day)")
@@ -64,6 +75,12 @@ def main() -> None:
                                 StakingConfig(ev_min=args.ev_min, bankroll=args.bankroll), args.ev_min)
         except PinnapiUnavailable as exc:
             print(f"::warning::Raport value bets sărit, pinnapi indisponibil: {exc}")
+            subject, body = pinnapi_alert(args.date, exc)
+            print(subject)
+            if not args.dry_run:
+                from send_report_email import send_email
+
+                send_email(subject, body)
             return
         for d, r in results.items():
             print(f"{d}: {r.compared} comparate, {len(r.unmatched)} nepotrivite, {len(r.bets)} pariuri")

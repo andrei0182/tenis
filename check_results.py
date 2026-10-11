@@ -30,7 +30,7 @@ LOG_PATH = Path("stats") / "picks_log.csv"
 LOG_COLUMNS = [
     "date", "tournament", "player1", "player2", "recommended_player", "opponent",
     "edge_pp", "rec_odds", "comp_pct", "games_line", "games_odds",
-    "te_match_id", "result", "score", "checked_at",
+    "te_match_id", "result", "score", "checked_at", "adj_pct", "ev",
 ]
 
 

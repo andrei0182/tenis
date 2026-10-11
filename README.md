@@ -138,6 +138,8 @@ urmărirea live a EV-ului la închidere.
 | `pinnacle-snapshots.yml` | la fiecare 2 ore | captură Pinnacle tenis → linia de închidere |
 | `value-bets.yml` | zilnic ~09:30–10:30 (ora României); lunea și rezumat săptămânal | pariuri cu EV ≥ 2% + bilanț EV la închidere pe email; manual: interval de zile |
 
+Dacă pinnapi refuză cererea (cheie greșită, cont suspendat), raportul zilnic nu rulează, dar se trimite un email scurt de alertă cu eroarea.
+
 Starea (capturi, jurnal, `daily_stats.csv`) e pe branch-ul `value-data`. Secrete: `PINNAPI_KEY` (+ cele Gmail
 existente); fără `PINNAPI_KEY` workflow-urile se opresc cu un mesaj. Raportul zilnic existent (`daily-report.yml`)
 rămâne neschimbat.
