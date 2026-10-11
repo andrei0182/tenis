@@ -1,21 +1,18 @@
 name: Pinnacle tennis snapshots (closing lines for value bets)
 
-# Every 2 hours: one pinnapi.com request for all prematch tennis odds (free tier: 100/day).
-# The last snapshot before each match starts is its closing line, used to measure the value
-# bets' CLV. State lives on the `value-data` branch, not on main. GitHub cron can run late,
-# so closing lines are approximate.
+# Pinnacle tennis prices for the closing line of the value bets: the last snapshot before each match
+# starts is its closing line. Provider: oddspapi.io (ODDSPAPI_KEY; free plan 250 requests/month,
+# ~2 per snapshot) or pinnapi.com (PINNAPI_KEY). Two snapshots a day + the morning value run stay
+# under the free oddspapi quota; closing lines are therefore approximate (afternoon/evening price).
+# State lives on the `value-data` branch, not on main.
 
 permissions:
   contents: write
 
 on:
   schedule:
-    - cron: "45 */2 * * *"
-    # Extra runs before the evening matches (GitHub often delays or drops scheduled runs, leaving
-    # bets without a snapshot taken after them). ~17:20, 19:20 and 21:20 Romania time (summer).
-    - cron: "20 14 * * *"
-    - cron: "20 16 * * *"
-    - cron: "20 18 * * *"
+    - cron: "20 12 * * *"  # ~15:20 Romania time (summer)
+    - cron: "20 17 * * *"  # ~20:20 Romania time (summer)
   workflow_dispatch: {}
 
 concurrency:
@@ -26,17 +23,19 @@ jobs:
   snapshot:
     runs-on: ubuntu-latest
     env:
+      ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
       PINNAPI_KEY: ${{ secrets.PINNAPI_KEY }}
+      ODDS_KEYS: ${{ secrets.ODDSPAPI_KEY }}${{ secrets.PINNAPI_KEY }}
     steps:
-      - name: Skip if the PINNAPI_KEY secret is not set
-        if: env.PINNAPI_KEY == ''
-        run: echo "::notice::PINNAPI_KEY secret missing -- add it in Settings > Secrets and variables > Actions."
+      - name: Skip if no odds API key secret is set
+        if: env.ODDS_KEYS == ''
+        run: echo "::notice::ODDSPAPI_KEY (or PINNAPI_KEY) secret missing -- add it in Settings > Secrets and variables > Actions."
 
       - uses: actions/checkout@v4
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
 
       - name: Checkout state branch (value-data)
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -48,20 +47,20 @@ jobs:
           fi
 
       - uses: actions/setup-python@v5
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
         with:
           python-version: "3.12"
 
       - name: Install
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
         run: pip install -e .
 
       - name: Snapshot Pinnacle tennis odds
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
         run: python -m tenis.pinnacle
 
       - name: Commit state
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
         working-directory: state
         run: |
           git config user.name "github-actions[bot]"

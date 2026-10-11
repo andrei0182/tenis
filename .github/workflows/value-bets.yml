@@ -3,7 +3,7 @@ name: Daily tennis value bets (Superbet vs Pinnacle)
 # Once a day: Superbet tennis match-winner odds for today vs Pinnacle's no-vig price; bets with
 # EV >= 2% are logged and emailed with the running closing-line record. Mondays also get a
 # weekly summary. Manual runs can cover a date range.
-# Needs secrets PINNAPI_KEY, GMAIL_ADDRESS, GMAIL_APP_PASSWORD, EMAIL_TO.
+# Needs secrets ODDSPAPI_KEY (or PINNAPI_KEY), GMAIL_ADDRESS, GMAIL_APP_PASSWORD, EMAIL_TO.
 
 permissions:
   contents: write
@@ -36,20 +36,22 @@ jobs:
   value-bets:
     runs-on: ubuntu-latest
     env:
+      ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
       PINNAPI_KEY: ${{ secrets.PINNAPI_KEY }}
+      ODDS_KEYS: ${{ secrets.ODDSPAPI_KEY }}${{ secrets.PINNAPI_KEY }}
       GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
       GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
       EMAIL_TO: ${{ secrets.EMAIL_TO }}
     steps:
-      - name: Skip if the PINNAPI_KEY secret is not set
-        if: env.PINNAPI_KEY == ''
-        run: echo "::notice::PINNAPI_KEY secret missing -- add it in Settings > Secrets and variables > Actions."
+      - name: Skip if no odds API key secret is set
+        if: env.ODDS_KEYS == ''
+        run: echo "::notice::ODDSPAPI_KEY (or PINNAPI_KEY) secret missing -- add it in Settings > Secrets and variables > Actions."
 
       - uses: actions/checkout@v4
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
 
       - name: Checkout state branch (value-data)
-        if: env.PINNAPI_KEY != ''
+        if: env.ODDS_KEYS != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -61,7 +63,7 @@ jobs:
           fi
 
       - name: Skip if already sent today
-        if: env.PINNAPI_KEY != '' && github.event_name != 'workflow_dispatch'
+        if: env.ODDS_KEYS != '' && github.event_name != 'workflow_dispatch'
         run: |
           today=$(TZ="Europe/Bucharest" date +%F)
           if [ -f state/.last_value_date ] && [ "$(cat state/.last_value_date)" == "$today" ]; then
@@ -70,36 +72,36 @@ jobs:
           fi
 
       - uses: actions/setup-python@v5
-        if: env.PINNAPI_KEY != '' && env.SKIP_RUN != 'true'
+        if: env.ODDS_KEYS != '' && env.SKIP_RUN != 'true'
         with:
           python-version: "3.12"
 
       - name: Install
-        if: env.PINNAPI_KEY != '' && env.SKIP_RUN != 'true'
+        if: env.ODDS_KEYS != '' && env.SKIP_RUN != 'true'
         run: |
           pip install -r requirements.txt
           pip install -e .
 
       - name: Compute today's date
-        if: env.PINNAPI_KEY != '' && env.SKIP_RUN != 'true'
+        if: env.ODDS_KEYS != '' && env.SKIP_RUN != 'true'
         id: date
         run: echo "value=$(TZ='Europe/Bucharest' date +%F)" >> "$GITHUB_OUTPUT"
 
       - name: Daily value bets
-        if: env.PINNAPI_KEY != '' && env.SKIP_RUN != 'true' && inputs.start_date == ''
+        if: env.ODDS_KEYS != '' && env.SKIP_RUN != 'true' && inputs.start_date == ''
         run: |
           python value_daily.py --date ${{ steps.date.outputs.value }} --state-dir state
           echo "${{ steps.date.outputs.value }}" > state/.last_value_date
 
       - name: Date range run (manual)
-        if: env.PINNAPI_KEY != '' && inputs.start_date != ''
+        if: env.ODDS_KEYS != '' && inputs.start_date != ''
         env:
           START: ${{ inputs.start_date }}
           END: ${{ inputs.end_date || inputs.start_date }}
         run: python value_daily.py --date "$START" --end "$END" --state-dir state
 
       - name: Weekly summary (Mondays, or on demand)
-        if: env.PINNAPI_KEY != '' && env.SKIP_RUN != 'true'
+        if: env.ODDS_KEYS != '' && env.SKIP_RUN != 'true'
         env:
           FORCE_WEEKLY: ${{ inputs.weekly }}
         run: |
@@ -110,7 +112,7 @@ jobs:
           fi
 
       - name: Commit state
-        if: env.PINNAPI_KEY != '' && env.SKIP_RUN != 'true'
+        if: env.ODDS_KEYS != '' && env.SKIP_RUN != 'true'
         working-directory: state
         run: |
           git config user.name "github-actions[bot]"

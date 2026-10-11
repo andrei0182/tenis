@@ -125,8 +125,13 @@ dinainte de start): **EV la închidere** și CLV. La fotbal, aceeași metodă a 
 istorice; la tenis nu există date istorice cu cote separate de pariere/închidere, deci singura verificare e
 urmărirea live a EV-ului la închidere.
 
-- `src/tenis/pinnacle.py`: cote Pinnacle de la pinnapi.com (tenis = sport 2), doar simplu, fără sub-evenimentele
-  de game-uri; istoricul se compactează la ultima captură dinainte de start.
+- `src/tenis/pinnacle.py`: cote Pinnacle, doar simplu, istoricul se compactează la ultima captură dinainte de start.
+  Furnizor ales automat: **oddspapi.io** (`src/tenis/oddspapi.py`, secret `ODDSPAPI_KEY`) dacă cheia există, altfel
+  pinnapi.com (`PINNAPI_KEY`, cont suspendat din 2026-09); `ODDS_PROVIDER` forțează unul. Pinnacle e doar prețul de
+  referință, pariurile se pun la Superbet. Planul gratuit oddspapi are 250 de cereri/lună (~2 per captură), de aceea
+  capturile sunt de 2 ori pe zi + rularea de dimineață. Verificare după ce pui cheia:
+  `ODDSPAPI_KEY=... python -m tenis.oddspapi --probe` (afișează piețele Pinnacle ale unui meci; câștigătorul meciului
+  trebuie să fie piața 121, rezultatele 121/122).
 - `src/tenis/value.py`: potrivirea Superbet ↔ Pinnacle (nume fără diacritice, ordinea cuvintelor ignorată,
   jucătorii pot fi inversați, ±1 zi între ziua UTC Superbet și ziua locală Pinnacle; pereche respinsă dacă
   probabilitățile diferă cu peste 15 puncte), pariurile cu valoare, CLV.
@@ -135,11 +140,13 @@ urmărirea live a EV-ului la închidere.
 
 | Workflow | Când | Ce face |
 |---|---|---|
-| `pinnacle-snapshots.yml` | la fiecare 2 ore | captură Pinnacle tenis → linia de închidere |
+| `pinnacle-snapshots.yml` | ~15:20 și ~20:20 (ora României, vara) | captură Pinnacle tenis → linia de închidere |
 | `value-bets.yml` | zilnic ~09:30–10:30 (ora României); lunea și rezumat săptămânal | pariuri cu EV ≥ 2% + bilanț EV la închidere pe email; manual: interval de zile |
 
-Starea (capturi, jurnal, `daily_stats.csv`) e pe branch-ul `value-data`. Secrete: `PINNAPI_KEY` (+ cele Gmail
-existente); fără `PINNAPI_KEY` workflow-urile se opresc cu un mesaj. Raportul zilnic existent (`daily-report.yml`)
+Dacă pinnapi refuză cererea (cheie greșită, cont suspendat), raportul zilnic nu rulează, dar se trimite un email scurt de alertă cu eroarea.
+
+Starea (capturi, jurnal, `daily_stats.csv`) e pe branch-ul `value-data`. Secrete: `ODDSPAPI_KEY` sau `PINNAPI_KEY` (+ cele Gmail
+existente); fără niciuna, workflow-urile se opresc cu un mesaj. Raportul zilnic existent (`daily-report.yml`)
 rămâne neschimbat.
 
 ### Limitări

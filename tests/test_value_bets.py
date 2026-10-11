@@ -174,5 +174,10 @@ def test_value_daily_skips_cleanly_when_pinnapi_refuses(monkeypatch, capsys, tmp
     monkeypatch.setattr(value_daily, "run_range", refuse)
     monkeypatch.setattr(value_daily, "fetch_superbet", lambda d: _superbet(d.isoformat()))
     monkeypatch.setattr(sys, "argv", ["value_daily.py", "--date", "2026-10-09", "--state-dir", str(tmp_path)])
-    value_daily.main()  # returns before importing send_report_email
+    sent = []
+    import send_report_email
+
+    monkeypatch.setattr(send_report_email, "send_email", lambda subject, body: sent.append((subject, body)))
+    value_daily.main()
     assert "::warning::" in capsys.readouterr().out
+    assert len(sent) == 1 and "OPRIT" in sent[0][0] and "account_suspended" in sent[0][1]
