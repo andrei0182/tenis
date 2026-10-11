@@ -42,8 +42,9 @@ MIN_COMPOSITE_PCT = 55.0
 # pe 90 de recomandari estimarea compusa a dat in medie 62%, castigul real a fost 38%, cat spunea
 # deja cota (36%). Estimarea se trage deci spre piata: P = P_piata + SHRINK * (P_compusa - P_piata),
 # cu P_piata din cotele Superbet fara marja, metoda "power" (corecteaza partial efectul favorit-outsider).
-# SHRINK estimat prin verosimilitate maxima pe cele 90 de recomandari: 0.23, interval 95% 0.01-0.51
-# (esantion mic) -> 0.2. De reestimat cand tabelul de calibrare din email are cateva sute de pariuri.
+# SHRINK estimat prin verosimilitate maxima pe cele 90 de recomandari: 0.23, interval 95% 0.01-0.51.
+# Simularea pe 89.593 de meciuri istorice (docs/simulare_raport_zilnic.md) da insa 0.02 (0.01-0.04):
+# estimarea compusa aproape nu adauga nimic peste cota, iar filtrele vechi au pierdut -12.7% pe 2.134 pariuri.
 # Pe 80.000 de meciuri ATP/WTA, outsiderii cu cota >= 3.00 pierd ~11-35% la o casa soft, deci li se
 # cere EV mai mare.
 SHRINK = 0.2
