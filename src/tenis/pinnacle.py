@@ -1,6 +1,9 @@
-"""Pinnacle prematch tennis odds via pinnapi.com (match winner), with a snapshot history for closing lines.
+"""Pinnacle prematch tennis odds (match winner), with a snapshot history for closing lines.
 
-The API key is read from the PINNAPI_KEY environment variable and never written anywhere.
+Two data providers, chosen by ODDS_PROVIDER (default: oddspapi when ODDSPAPI_KEY is set, else pinnapi):
+  - oddspapi.io (tenis.oddspapi), key in ODDSPAPI_KEY
+  - pinnapi.com, key in PINNAPI_KEY
+Pinnacle is only the reference price; bets are placed at Superbet. Keys are never written anywhere.
 The last snapshot taken before a match starts is its (approximate) closing line.
 """
 
@@ -29,7 +32,14 @@ def api_key() -> str:
 
 
 class PinnapiUnavailable(RuntimeError):
-    """pinnapi refused the key (suspended/expired account, quota): nothing to do until the account is fixed."""
+    """The odds provider refused the key (suspended/expired account, quota): nothing to do until it is fixed."""
+
+
+def provider() -> str:
+    name = os.environ.get("ODDS_PROVIDER", "").strip().lower()
+    if name:
+        return name
+    return "oddspapi" if os.environ.get("ODDSPAPI_KEY", "").strip() else "pinnapi"
 
 
 def fetch_prematch(key: str, sport_id: int = TENNIS, timeout: int = 60) -> dict:
@@ -67,7 +77,12 @@ def events_to_frame(payload: dict, taken_at: pd.Timestamp) -> pd.DataFrame:
             continue
         rows.append({"event_id": ev["event_id"], "starts": ev["starts"], "League": ev.get("league_name"),
                      "Player1": ev["home"], "Player2": ev["away"], "PS1": ml["home"], "PS2": ml["away"]})
-    df = pd.DataFrame(rows, columns=COLUMNS)
+    return _finish(pd.DataFrame(rows, columns=COLUMNS), taken_at)
+
+
+def _finish(df: pd.DataFrame, taken_at: pd.Timestamp) -> pd.DataFrame:
+    """Future matches only, plus the snapshot time and the local (Bucharest) match date."""
+    df = df.copy()
     df["starts"] = pd.to_datetime(df["starts"], utc=True)
     df = df[df["starts"] > taken_at].copy()
     df.insert(0, "taken_at", taken_at)
@@ -92,8 +107,12 @@ def snapshot(out: str | Path, history: str | Path | None = None, days: int = 3, 
              now: pd.Timestamp | None = None, payload: dict | None = None) -> pd.DataFrame:
     """Write current prices for matches in the next `days` and add them to the (compacted) history."""
     now = now or pd.Timestamp.now(tz="UTC")
-    payload = payload if payload is not None else fetch_prematch(key or api_key())
-    df = events_to_frame(payload, now)
+    if payload is None and provider() == "oddspapi":
+        from . import oddspapi
+
+        df = _finish(oddspapi.to_frame(*oddspapi.fetch(key or oddspapi.api_key(), now, days=days)), now)
+    else:
+        df = events_to_frame(payload if payload is not None else fetch_prematch(key or api_key()), now)
     df = df[df["starts"] <= now + pd.Timedelta(days=days)]
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
